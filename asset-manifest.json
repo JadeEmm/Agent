@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/agent-landing-page/static/css/main.3276ff09.css",
+    "main.js": "/agent-landing-page/static/js/main.42a214f8.js",
+    "index.html": "/agent-landing-page/index.html",
+    "main.3276ff09.css.map": "/agent-landing-page/static/css/main.3276ff09.css.map",
+    "main.42a214f8.js.map": "/agent-landing-page/static/js/main.42a214f8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3276ff09.css",
+    "static/js/main.42a214f8.js"
+  ]
+}
