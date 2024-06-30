@@ -20,6 +20,7 @@ function ItemPhotos({
     const item = useMyListingStore()
 
     const handleFileAdd = async (filesToUpload: string[]) => {
+        console.log("Addeding now!")
         item.updateState({ photos: [...item.data.photos ?? [], ...filesToUpload]})
     }
 

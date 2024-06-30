@@ -8,7 +8,7 @@ import { Button } from './ui/button'
 import Image from 'next/image'
 import { Skeleton } from "@/components/ui/skeleton"
 import { Loader } from './loader'
-import { storageRef } from '@/lib/firebase'
+import { storageImageRef } from '@/lib/firebase'
 import { deleteObject, getDownloadURL, uploadBytes } from 'firebase/storage'
 
 type UploadInterface = {
@@ -73,7 +73,8 @@ function ImageDropZone({
             addedFiles.map(async file => {
                 Promises.push(
                     new Promise(async resolve => {
-                        const fileRef = storageRef(file.filename)
+                        console.log(file);
+                        const fileRef = storageImageRef(file.filename)
 
                         // wait for upload
                         await uploadBytes(fileRef, file.file as File)
