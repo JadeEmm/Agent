@@ -17,6 +17,18 @@ export interface SeekerProfile extends Document {
     photos: string[],
     description: string,
     workHistory: string,
+    fullName: string,
+    address: string,
+    phoneNumber: string,
+    emailAddress: string,
+    education: string,
+    relevantLinks: string,
+    workAuthorization: boolean,
+    requiresSponsorship: boolean,
+    disability: boolean,
+    veteran: boolean,
+    ethnicity: string,
+    gender: string,
 }
 
 export interface Booking extends Document {
