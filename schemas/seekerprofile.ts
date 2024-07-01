@@ -10,8 +10,19 @@ const SeekerProfileSchema = new Schema<SeekerProfile>({
     },
     photos: [String],
     description: String,
-    workHistory: String
-    
+    workHistory: String,
+    fullName: String,
+    address: String,
+    phoneNumber: String,
+    emailAddress: String,
+    education: String,
+    relevantLinks: String,
+    workAuthorization: Boolean,
+    requiresSponsorship: Boolean,
+    disability: Boolean,
+    veteran: Boolean,
+    ethnicity: String,
+    gender: String,
 }, {
     timestamps: true
 })

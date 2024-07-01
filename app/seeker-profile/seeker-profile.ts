@@ -5,6 +5,18 @@ export type SeekerProfileType = {
     description?: string,
     photos?: string[],
     workHistory?: string,
+    fullName?: string,
+    address?: string,
+    phoneNumber?: string,
+    emailAddress?: string,
+    education?: string,
+    relevantLinks?: string,
+    workAuthorization?: boolean,
+    requiresSponsorship?: boolean,
+    disability?: boolean,
+    veteran?: boolean,
+    ethnicity?: string,
+    gender?: string
 }
 
 export interface SeekerProfileState {
@@ -19,6 +31,18 @@ export const useSeekerProfile = create<SeekerProfileState>()((set) => ({
         description: '',
         photos: [],
         workHistory: '',
+        fullName: '',
+        address: '',
+        phoneNumber: '',
+        emailAddress: '',
+        education: '',
+        relevantLinks: '',
+        workAuthorization: true,
+        requiresSponsorship: false,
+        disability: false,
+        veteran: false,
+        ethnicity: '',
+        gender: '',
     },
     updateState: (data) => set((state) => ({
         data: { ...state.data, ...data}
@@ -29,6 +53,18 @@ export const useSeekerProfile = create<SeekerProfileState>()((set) => ({
             description: '',
             photos: [],
             workHistory: '',
+            fullName: '',
+            address: '',
+            phoneNumber: '',
+            emailAddress: '',
+            education: '',
+            relevantLinks: '',
+            workAuthorization: true,
+            requiresSponsorship: false,
+            disability: false,
+            veteran: false,
+            ethnicity: '',
+            gender: '',
         }
     })
 }))
