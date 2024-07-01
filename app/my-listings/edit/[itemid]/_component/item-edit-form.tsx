@@ -18,30 +18,14 @@ import { itemCategories } from '@/data'
 
 const FormSchema = z.object({
     status: z.boolean(),
-    itemname: z.string().min(4, {
-        message: "item name must by at least 4 characters."
-    }),
-    itemcategory: z.string().min(1, {
-        message: 'Item category is required.'
-    }),
+    itemname: z.string(),
     itemdescription: z.string().min(4, {
-        message: 'Item description must be at least 4 characters.'
+        message: 'Agent description must be at least 100 characters.'
     }),
-    hourly: z
-        .coerce
-        .number({ invalid_type_error: 'Amount must be a number' })
-        .positive({ message: 'Amount must be positive' })
-        .finite({ message: 'Must be a valid amount' }),
-    daily: z
-        .coerce
-        .number({ invalid_type_error: 'Amount must be a number' })
-        .positive({ message: 'Amount must be positive' })
-        .finite({ message: 'Must be a valid amount' }),
     photos: z.array(z.string())
 })
 
 type FormInput = z.infer<typeof FormSchema>
-
 
 function ItemEditForm({
     item
@@ -54,10 +38,7 @@ function ItemEditForm({
         defaultValues: {
             status: item.status === ItemStatus.LISTED,
             itemname: item?.name,
-            itemcategory: item?.category,
             itemdescription: item?.description,
-            hourly: item?.price.hourly,
-            daily: item?.price.daily,
             photos: item?.photos
         }
     })
@@ -154,7 +135,7 @@ function ItemEditForm({
                                     </FormLabel>
                                     <FormControl>
                                         <Textarea {...field}
-                                            maxLength={200}
+                                            maxLength={1000}
                                             placeholder='Tell job seekers a little bit about about yourself :) This may include who you are, your experience applying to jobs for seekers, and what types of roles/locations/industries you speicalize in for applications.' />
                                     </FormControl>
                                     <FormMessage />
@@ -164,7 +145,11 @@ function ItemEditForm({
                     </div>
                     
                     {/* photos */}
+                    <FormLabel>
+                        Profile Picture
+                    </FormLabel>
                     <div className='flex flex-wrap gap-2'>
+                        
                         <ImageDropZone
                             photos={form.getValues('photos')}
                             onFileDelete={handleFileDelete}
