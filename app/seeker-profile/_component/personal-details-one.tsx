@@ -14,6 +14,7 @@ const FormSchema = z.object({
     address: z.string(),
     phoneNumber: z.string(),
     emailAddress: z.string(), 
+    relevantLinks: z.string(),
 })
 
 type personalDetailsOne = z.infer<typeof FormSchema>
@@ -34,6 +35,7 @@ function PersonalDetailsOne({
             address: seekerProfile.data.address,
             phoneNumber: seekerProfile.data.phoneNumber,
             emailAddress: seekerProfile.data.emailAddress,
+            relevantLinks: seekerProfile.data.relevantLinks,
         }
     })
 
@@ -43,6 +45,7 @@ function PersonalDetailsOne({
             address: data.address,
             phoneNumber: data.phoneNumber,
             emailAddress: data.emailAddress,
+            relevantLinks: data.relevantLinks,
         })
         onNext()
     }
@@ -122,6 +125,23 @@ function PersonalDetailsOne({
                             )}
                         />
                     </div> 
+                    <div className="bg-slate-100 p-2 rounded-md">
+                        <FormField
+                            control={form.control}
+                            name="relevantLinks"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>
+                                    Relevant links
+                                    </FormLabel>
+                                    <FormControl>
+                                        <Input {...field} placeholder="e.g., linkedin, github, personal website/portfolio, research publications"/>
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                    </div>
                     <div className='flex justify-between items-center py-4'>
                         <Button type='button' variant='ghost' onClick={onPrev}>Prev</Button>
                         <Button type='submit' variant='ghost'>Next</Button>
