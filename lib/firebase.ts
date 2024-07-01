@@ -22,5 +22,5 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0]
 
-const storage = getStorage(app)
+const storage = getStorage(app, process.env.FIREBASE_URL)
 export const storageRef = (token : string) => ref(storage, token)
