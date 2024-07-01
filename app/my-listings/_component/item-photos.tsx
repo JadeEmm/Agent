@@ -31,7 +31,7 @@ function ItemPhotos({
 
     return (
         <div className="grid w-full gap-1 5">
-            <h2 className='text-xl sm:text-2xl py-4 font-semibold'>Photos</h2>
+            <h2 className='text-xl sm:text-2xl py-4 font-semibold'>Profile Picture</h2>
             <ImageDropZone
                 onFilesAdded={handleFileAdd}
                 onFileDelete={handleFileDelete}

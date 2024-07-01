@@ -14,7 +14,7 @@ async function ItemEditPage({
     const item = await ItemModel.findById<Item>(params.itemid)
     return (
         <div>
-            <h1 className="text-2xl sm:text-4xl py-8 font-bold capitalize">Edit {item?.name}</h1>
+            <h1 className="text-2xl sm:text-4xl py-8 font-bold capitalize">Edit your profile </h1>
             {
                 item ? <ItemEditForm item={JSON.parse(JSON.stringify(item))} /> : <Loader />
             }

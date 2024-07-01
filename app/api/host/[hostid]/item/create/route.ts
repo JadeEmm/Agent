@@ -38,7 +38,7 @@ export async function POST(
         })
 
         return NextResponse.json({
-            message: "Item created",
+            message: "Profile created",
             item: savedItem
         })
 

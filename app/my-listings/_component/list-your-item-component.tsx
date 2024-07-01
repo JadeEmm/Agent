@@ -4,16 +4,14 @@ import React, { useState } from 'react'
 import { Progress } from "@/components/ui/progress"
 import { Button } from '@/components/ui/button'
 import ItemName from './item-name'
-import ItemCategory from './item-category'
 import ItemDescription from './item-description'
-import ItemPricing from './item-pricing'
 import ItemPhotos from './item-photos'
 import { useMyListingStore } from '../my-listing-store'
 import { useSession } from 'next-auth/react'
 import { toast } from 'sonner'
 import { Loader } from '@/components/loader'
 
-const totalSteps = 5
+const totalSteps = 3
 const stepIncrement = 100 / totalSteps
 
 function ListYourItemComponent() {
@@ -66,7 +64,7 @@ function ListYourItemComponent() {
 
     return (
         <>
-            <h1 className='text-2xl sm:text-4xl text-center py-8 font-bold'>List your item</h1>
+            <h1 className='text-2xl sm:text-4xl text-center py-8 font-bold'>Create your Profile</h1>
 
             <div className="space-y-8">
 
@@ -74,13 +72,9 @@ function ListYourItemComponent() {
 
                 {{
                     1: <ItemName onNext={handleNextStepChange} />,
-                    2: <ItemCategory onNext={handleNextStepChange}
+                    2: <ItemDescription onNext={handleNextStepChange}
                         onPrev={handlePrevStepChange} />,
-                    3: <ItemDescription onNext={handleNextStepChange}
-                        onPrev={handlePrevStepChange} />,
-                    4: <ItemPricing onNext={handleNextStepChange}
-                        onPrev={handlePrevStepChange} />,
-                    5: <ItemPhotos onPrev={handlePrevStepChange} />
+                    3: <ItemPhotos onPrev={handlePrevStepChange} />
                 }[step]}
 
                 {

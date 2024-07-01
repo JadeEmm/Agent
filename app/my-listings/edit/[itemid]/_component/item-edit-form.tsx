@@ -18,30 +18,14 @@ import { itemCategories } from '@/data'
 
 const FormSchema = z.object({
     status: z.boolean(),
-    itemname: z.string().min(4, {
-        message: "item name must by at least 4 characters."
-    }),
-    itemcategory: z.string().min(1, {
-        message: 'Item category is required.'
-    }),
+    itemname: z.string(),
     itemdescription: z.string().min(4, {
-        message: 'Item description must be at least 4 characters.'
+        message: 'Agent description must be at least 100 characters.'
     }),
-    hourly: z
-        .coerce
-        .number({ invalid_type_error: 'Amount must be a number' })
-        .positive({ message: 'Amount must be positive' })
-        .finite({ message: 'Must be a valid amount' }),
-    daily: z
-        .coerce
-        .number({ invalid_type_error: 'Amount must be a number' })
-        .positive({ message: 'Amount must be positive' })
-        .finite({ message: 'Must be a valid amount' }),
     photos: z.array(z.string())
 })
 
 type FormInput = z.infer<typeof FormSchema>
-
 
 function ItemEditForm({
     item
@@ -54,10 +38,7 @@ function ItemEditForm({
         defaultValues: {
             status: item.status === ItemStatus.LISTED,
             itemname: item?.name,
-            itemcategory: item?.category,
             itemdescription: item?.description,
-            hourly: item?.price.hourly,
-            daily: item?.price.daily,
             photos: item?.photos
         }
     })
@@ -74,7 +55,7 @@ function ItemEditForm({
         })
 
         if (result.ok) {
-            toast.success("item upated.")
+            toast.success("item updated.")
             router.refresh()
         } else {
             toast.error("Failed to update item.")
@@ -110,7 +91,7 @@ function ItemEditForm({
                                     <FormLabel
                                         className={`${field.value ? 'text-green-500' : 'text-black'} font-bold`}
                                     >
-                                        {field.value ? 'Listed' : 'Unlisted'}
+                                        {field.value ? 'Your profile is public' : 'Your profile is hidden'}
                                     </FormLabel>
                                     <FormControl>
                                         <Switch
@@ -123,7 +104,7 @@ function ItemEditForm({
                         />
                     </div>
 
-                    {/* item name */}
+                    {/* agent name */}
                     <div className="bg-slate-100 p-2 rounded-md">
                         <FormField
                             control={form.control}
@@ -134,7 +115,7 @@ function ItemEditForm({
                                         Name
                                     </FormLabel>
                                     <FormControl>
-                                        <Input placeholder='e.g. Macbook pro' {...field} />
+                                        <Input {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -142,84 +123,20 @@ function ItemEditForm({
                         />
                     </div>
 
-                    {/* item description */}
+                    {/* agent description */}
                     <div className="bg-slate-100 p-2 rounded-md">
                         <FormField
                             control={form.control}
                             name='itemdescription'
                             render={({ field }) => (
                                 <FormItem>
+                                    <FormLabel>
+                                        Description
+                                    </FormLabel>
                                     <FormControl>
                                         <Textarea {...field}
-                                            maxLength={200}
-                                            placeholder='Provide detail description and any rules' />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                    </div>
-
-                    {/* item category */}
-                    <div className="bg-slate-100 p-2 rounded-md">
-                        <FormField
-                            control={form.control}
-                            name='itemcategory'
-                            render={({ field }) => (
-                                <FormItem>
-                                    <Select onValueChange={field.onChange}
-                                        defaultValue={item.category}
-                                    >
-                                        <FormControl>
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="Select an item category" />
-                                            </SelectTrigger>
-                                        </FormControl>
-                                        <SelectContent>
-                                            {
-                                                itemCategories.map(cat => (
-                                                    <SelectItem key={
-                                                        cat.name
-                                                    } value={cat.name}>
-                                                        {cat.display}
-                                                    </SelectItem>
-                                                ))
-                                            }
-                                        </SelectContent>
-                                    </Select>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                    </div>
-
-                    {/* item pricing */}
-                    <div className="bg-slate-100 p-2 rounded-md">
-                        <FormField
-                            control={form.control}
-                            name='hourly'
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Hourly pricing</FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            {...field}
-                                            placeholder='e.g. 30' />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name='daily'
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Daily pricing</FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            {...field}
-                                            placeholder='e.g. 30' />
+                                            maxLength={1000}
+                                            placeholder='Tell job seekers a little bit about about yourself :) This may include who you are, your experience applying to jobs for seekers, and what types of roles/locations/industries you speicalize in for applications.' />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -228,7 +145,11 @@ function ItemEditForm({
                     </div>
                     
                     {/* photos */}
+                    <FormLabel>
+                        Profile Picture
+                    </FormLabel>
                     <div className='flex flex-wrap gap-2'>
+                        
                         <ImageDropZone
                             photos={form.getValues('photos')}
                             onFileDelete={handleFileDelete}
