@@ -6,7 +6,7 @@ import * as z from 'zod'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { useMyListingStore } from '../my-listing-store'
+import { useSeekerProfile } from '../seeker-profile'
 
 const FormSchema = z.object({
     itemname: z.string().min(4, {
@@ -24,17 +24,17 @@ function ItemName({
     onPrev?: () => void
 }) {
 
-    const myListing = useMyListingStore()
+    const seekerProfile = useSeekerProfile()
 
     const form = useForm<ItemNameInput>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
-            itemname: myListing.data.name
+            itemname: seekerProfile.data.name
         }
     })
 
     function onSubmit(data: ItemNameInput) {
-        myListing.updateState({
+        seekerProfile.updateState({
             name: data.itemname
         })
         onNext()

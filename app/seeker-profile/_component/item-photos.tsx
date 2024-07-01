@@ -7,7 +7,7 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from '@/components/ui/button'
 import ImageDropZone from '@/components/imageDropZone'
-import { useMyListingStore } from '../my-listing-store'
+import { useSeekerProfile } from '../seeker-profile'
 
 function ItemPhotos({
     onNext,
@@ -17,7 +17,7 @@ function ItemPhotos({
     onPrev: () => void
 }) {
 
-    const item = useMyListingStore()
+    const item = useSeekerProfile()
 
     const handleFileAdd = async (filesToUpload: string[]) => {
         console.log("Addeding now!")
