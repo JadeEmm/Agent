@@ -22,8 +22,8 @@ async function Header() {
                     <Link href="/">
                         <span className='sr-only'>Logo</span>
                         <Image
-                            width={40}
-                            height={40}
+                            width={100}
+                            height={100}
                             className='w-auto h-auto'
                             src='/logo.png' alt='logo'
                         />
@@ -38,7 +38,7 @@ async function Header() {
                         className={cn(buttonVariants({ variant: 'outline' }),
                             "shadow hidden md:flex md:mr-2"
                         )}
-                    >Switch to host</Link>
+                    >Get Started</Link>
 
                     {/* drop down menu*/}
                     <DropdownMenu>
@@ -77,7 +77,7 @@ async function Header() {
                                 }
                             </DropdownMenuItem>
                             <DropdownMenuSeparator></DropdownMenuSeparator>
-                            <DropdownMenuItem>How it works?</DropdownMenuItem>
+                            <DropdownMenuItem>How Agent Works</DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>

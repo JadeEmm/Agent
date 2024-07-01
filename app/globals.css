@@ -1,51 +1,50 @@
 @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
+@tailwind components;
+@tailwind utilities;
 
-  @layer base {
-    :root {
-      --background: 0 0% 100%;
-      --foreground: 222.2 84% 4.9%;
-      --card: 0 0% 100%;
-      --card-foreground: 222.2 84% 4.9%;
-      --popover: 0 0% 100%;
-      --popover-foreground: 222.2 84% 4.9%;
-      --primary: 221.2 83.2% 53.3%;
-      --primary-foreground: 210 40% 98%;
-      --secondary: 210 40% 96.1%;
-      --secondary-foreground: 222.2 47.4% 11.2%;
-      --muted: 210 40% 96.1%;
-      --muted-foreground: 215.4 16.3% 46.9%;
-      --accent: 210 40% 96.1%;
-      --accent-foreground: 222.2 47.4% 11.2%;
-      --destructive: 0 84.2% 60.2%;
-      --destructive-foreground: 210 40% 98%;
-      --border: 214.3 31.8% 91.4%;
-      --input: 214.3 31.8% 91.4%;
-      --ring: 221.2 83.2% 53.3%;
-      --radius: 0.5rem;
-    }
-  
-    .dark {
-      --background: 222.2 84% 4.9%;
-      --foreground: 210 40% 98%;
-      --card: 222.2 84% 4.9%;
-      --card-foreground: 210 40% 98%;
-      --popover: 222.2 84% 4.9%;
-      --popover-foreground: 210 40% 98%;
-      --primary: 217.2 91.2% 59.8%;
-      --primary-foreground: 222.2 47.4% 11.2%;
-      --secondary: 217.2 32.6% 17.5%;
-      --secondary-foreground: 210 40% 98%;
-      --muted: 217.2 32.6% 17.5%;
-      --muted-foreground: 215 20.2% 65.1%;
-      --accent: 217.2 32.6% 17.5%;
-      --accent-foreground: 210 40% 98%;
-      --destructive: 0 62.8% 30.6%;
-      --destructive-foreground: 210 40% 98%;
-      --border: 217.2 32.6% 17.5%;
-      --input: 217.2 32.6% 17.5%;
-      --ring: 224.3 76.3% 48%;
-    }
+@layer base {
+  :root {
+    --background: 0 0% 100%; /* White background */
+    --foreground: 240 100% 10%; /* Primary text color */
+    --card: 0 0% 100%; /* White card background */
+    --card-foreground: 240 100% 10%; /* Text color for cards */
+    --popover: 0 0% 100%; /* White popover background */
+    --popover-foreground: 240 100% 10%; /* Text color for popovers */
+    --primary: 234 63% 32%; /* Custom blue primary color (#1A237E) */
+    --primary-foreground: 0 0% 100%; /* White text on primary background */
+    --secondary: 210 40% 96.1%; /* Light gray secondary color */
+    --secondary-foreground: 240 100% 10%; /* Text color on secondary background */
+    --muted: 210 40% 96.1%; /* Light gray muted background */
+    --muted-foreground: 240 100% 10%; /* Text color on muted background */
+    --accent: 210 40% 96.1%; /* Light gray accent color */
+    --accent-foreground: 240 100% 10%; /* Text color on accent background */
+    --destructive: 0 84.2% 60.2%; /* Red color for destructive actions */
+    --destructive-foreground: 0 0% 100%; /* White text on destructive background */
+    --border: 214.3 31.8% 91.4%; /* Light gray border color */
+    --input: 214.3 31.8% 91.4%; /* Light gray input background */
+    --ring: 234 63% 32%; /* Custom blue focus ring */
+    --radius: 0.5rem; /* Border radius */
   }
-  
+
+  .dark {
+    --background: 234 63% 32%; /* Custom blue background */
+    --foreground: 0 0% 100%; /* White text */
+    --card: 234 63% 32%; /* Custom blue card background */
+    --card-foreground: 0 0% 100%; /* White text for cards */
+    --popover: 234 63% 32%; /* Custom blue popover background */
+    --popover-foreground: 0 0% 100%; /* White text for popovers */
+    --primary: 234 63% 32%; /* Custom blue primary color */
+    --primary-foreground: 0 0% 100%; /* White text on primary background */
+    --secondary: 217.2 32.6% 17.5%; /* Darker gray secondary color */
+    --secondary-foreground: 0 0% 100%; /* White text on secondary background */
+    --muted: 217.2 32.6% 17.5%; /* Darker gray muted background */
+    --muted-foreground: 0 0% 100%; /* White text on muted background */
+    --accent: 217.2 32.6% 17.5%; /* Darker gray accent color */
+    --accent-foreground: 0 0% 100%; /* White text on accent background */
+    --destructive: 0 62.8% 30.6%; /* Darker red color for destructive actions */
+    --destructive-foreground: 0 0% 100%; /* White text on destructive background */
+    --border: 217.2 32.6% 17.5%; /* Darker gray border color */
+    --input: 217.2 32.6% 17.5%; /* Darker gray input background */
+    --ring: 234 63% 32%; /* Custom blue focus ring */
+  }
+}
