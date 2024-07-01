@@ -32,27 +32,29 @@ async function MyListingsPage() {
   return (
     <>
  
-        <h1 className='text-2xl sm:text-4xl py-8 font-bold'>{myListings.length} Listings</h1>
+        <h1 className='text-2xl sm:text-4xl py-8 font-bold'>Your Agent Profile</h1>
 
         {/* dialog for adding items */}
-        <Dialog>
-            <DialogTrigger asChild>
-                <Button variant="outline"><Plus className='mr-4 h-4 w-4' />Add item</Button>
-            </DialogTrigger>
-            <DialogContent>
-                <DialogHeader>
-                    <DialogTitle>Add new listing</DialogTitle>
-                </DialogHeader>
-                <ListYourItemComponent />
-            </DialogContent>
-        </Dialog>
+        {
+            myListings.length == 0 ? 
+            <Dialog>
+                <DialogTrigger asChild>
+                    <Button variant="outline"><Plus className='mr-4 h-4 w-4' />Create Agent Profile</Button>
+                </DialogTrigger>
+                <DialogContent>
+                    <ListYourItemComponent />
+                </DialogContent>
+            </Dialog> 
+            : <></>
+        }
+        
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 py-8">
             {
                 myListings.length > 0 ? 
                 <SingleListing listings={myListings} />
                 :   
-                <p className='text-xl font-light p-4'>No listings</p>
+                <p className='text-xl font-light p-4'>No Agent Profile</p>
 
             }
         </div>
