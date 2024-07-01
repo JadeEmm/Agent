@@ -11,7 +11,7 @@ import { useSession } from 'next-auth/react'
 import { toast } from 'sonner'
 import { Loader } from '@/components/loader'
 
-const totalSteps = 5
+const totalSteps = 3
 const stepIncrement = 100 / totalSteps
 
 function ListYourItemComponent() {

@@ -95,7 +95,7 @@ function SingleListing({
                     <AlertDialogHeader>
                         <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                         <AlertDialogDescription>
-                            This action cannot be undone. This will permanently remove the item from your listing.
+                            This action cannot be undone. This will permanently remove your Agent profile.
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
