@@ -4,19 +4,22 @@ import React, { useState } from 'react'
 import { Progress } from "@/components/ui/progress"
 import { Button } from '@/components/ui/button'
 import ItemName from './item-name'
-import ItemDescription from './item-description'
 import ItemPhotos from './item-photos'
-import { useMyListingStore } from '../my-listing-store'
 import { useSession } from 'next-auth/react'
 import { toast } from 'sonner'
 import { Loader } from '@/components/loader'
+import WorkHistory from './work-history'
+import SeekerDescription from './seeker-description'
+import { useSeekerProfile } from '../seeker-profile'
+import PersonalDetailsTwo from './personal-details-two'
+import PersonalDetailsOne from './personal-details-one'
 
-const totalSteps = 3
+const totalSteps = 5
 const stepIncrement = 100 / totalSteps
 
 function ListYourItemComponent() {
     const { data: session } = useSession()
-    const myListing = useMyListingStore()
+    const seekerProfile = useSeekerProfile()
     const [submitting, setSubmitting] = useState(false)
     const [step, setStep] = useState(1)
 
@@ -38,7 +41,7 @@ function ListYourItemComponent() {
 
         data.set('data', JSON.stringify(
             {
-                item: myListing.data
+                item: seekerProfile.data
             }
         ))
 
@@ -57,11 +60,6 @@ function ListYourItemComponent() {
 
     }
 
-    const handleListAnother = () => {
-        myListing.restart()
-        setStep(1)
-    }
-
     return (
         <>
             <h1 className='text-2xl sm:text-4xl text-center py-8 font-bold'>Create your Profile</h1>
@@ -72,9 +70,12 @@ function ListYourItemComponent() {
 
                 {{
                     1: <ItemName onNext={handleNextStepChange} />,
-                    2: <ItemDescription onNext={handleNextStepChange}
+                    2: <SeekerDescription onNext={handleNextStepChange}
                         onPrev={handlePrevStepChange} />,
-                    3: <ItemPhotos onPrev={handlePrevStepChange} />
+                    3: <ItemPhotos onNext={handleNextStepChange} onPrev={handlePrevStepChange} />,
+                    4: <WorkHistory onNext={handleNextStepChange} onPrev={handlePrevStepChange}/>,
+                    5: <PersonalDetailsOne onNext={handleNextStepChange} onPrev={handlePrevStepChange}/>,
+                    6: <PersonalDetailsTwo onNext={handleNextStepChange} onPrev={handlePrevStepChange}/>,
                 }[step]}
 
                 {
@@ -82,7 +83,6 @@ function ListYourItemComponent() {
                         <Loader /> :
                         <div className={`${step < totalSteps ? 'hidden' : 'flex flex-col mt-4 w-full space-y-2'}`}>
                             <Button type='button' onClick={handleFinalSubmit}>Submit</Button>
-                            <Button type='button' variant='outline' onClick={handleListAnother}>List another</Button>
                         </div>
                 }
 
