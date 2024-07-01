@@ -41,7 +41,7 @@ function SingleListing({
         })
 
         if (result.ok) {
-            toast.success("Item deleted")
+            toast.success("Profile deleted")
             router.refresh()
         }
 

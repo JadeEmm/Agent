@@ -57,11 +57,6 @@ function ListYourItemComponent() {
 
     }
 
-    const handleListAnother = () => {
-        myListing.restart()
-        setStep(1)
-    }
-
     return (
         <>
             <h1 className='text-2xl sm:text-4xl text-center py-8 font-bold'>Create your Profile</h1>
@@ -82,7 +77,6 @@ function ListYourItemComponent() {
                         <Loader /> :
                         <div className={`${step < totalSteps ? 'hidden' : 'flex flex-col mt-4 w-full space-y-2'}`}>
                             <Button type='button' onClick={handleFinalSubmit}>Submit</Button>
-                            <Button type='button' variant='outline' onClick={handleListAnother}>List another</Button>
                         </div>
                 }
 
