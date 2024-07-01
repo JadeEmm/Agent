@@ -23,6 +23,7 @@ const SeekerProfileSchema = new Schema<SeekerProfile>({
     veteran: Boolean,
     ethnicity: String,
     gender: String,
+    resumeLink: String,
 }, {
     timestamps: true
 })

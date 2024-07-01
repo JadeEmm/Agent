@@ -16,7 +16,8 @@ export type SeekerProfileType = {
     disability?: boolean,
     veteran?: boolean,
     ethnicity?: string,
-    gender?: string
+    gender?: string,
+    resumeLink?: string,
 }
 
 export interface SeekerProfileState {
@@ -43,6 +44,7 @@ export const useSeekerProfile = create<SeekerProfileState>()((set) => ({
         veteran: false,
         ethnicity: '',
         gender: '',
+        resumeLink: '',
     },
     updateState: (data) => set((state) => ({
         data: { ...state.data, ...data}
@@ -65,6 +67,7 @@ export const useSeekerProfile = create<SeekerProfileState>()((set) => ({
             veteran: false,
             ethnicity: '',
             gender: '',
+            resumeLink: '',
         }
     })
 }))

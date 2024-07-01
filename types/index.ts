@@ -29,6 +29,7 @@ export interface SeekerProfile extends Document {
     veteran: boolean,
     ethnicity: string,
     gender: string,
+    resumeLink: string,
 }
 
 export interface Booking extends Document {
