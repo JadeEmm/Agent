@@ -6,15 +6,15 @@ import * as z from 'zod'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from '@/components/ui/button'
-import { useMyListingStore } from '../my-listing-store'
+import { useSeekerProfile } from '../seeker-profile'
 
 const FormSchema = z.object({
-    itemdescription: z.string().min(50, {
-        message: 'Description must be at least 50 characters.'
+    workHistory: z.string().min(50, {
+        message: 'Work history must be at least 50 characters.'
     })
 })
 
-type ItemDescriptionInput = z.infer<typeof FormSchema>
+type WorkHistoryInput = z.infer<typeof FormSchema>
 
 function WorkHistory({
     onNext,
@@ -23,18 +23,18 @@ function WorkHistory({
     onNext: () => void,
     onPrev?: () => void
 }) {
-    const myListing = useMyListingStore()
+    const seekerProfile = useSeekerProfile()
 
-    const form = useForm<ItemDescriptionInput>({
+    const form = useForm<WorkHistoryInput>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
-            itemdescription: myListing.data.description
+            workHistory: seekerProfile.data.workHistory
         }
     })
 
-    function onSubmit(data: ItemDescriptionInput) {
-        myListing.updateState({
-            description: data.itemdescription
+    function onSubmit(data: WorkHistoryInput) {
+        seekerProfile.updateState({
+            workHistory: data.workHistory
         })
         onNext()
     }
@@ -47,7 +47,7 @@ function WorkHistory({
                 <form onSubmit={form.handleSubmit(onSubmit)}>
                     <FormField
                         control={form.control}
-                        name='itemdescription'
+                        name='workHistory'
                         render={({ field}) => (
                             <FormItem>
                                 <h4>At the bare minimum, for each experience, please provide your title, company name, employment term, and location. Please provide a few paragraphs explaining what you accomplished/did at each role--<b>this content will enable the Agent to tailor your resume</b>. The more, the better! Include Projects too, if relevant.</h4>
