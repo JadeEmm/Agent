@@ -70,6 +70,17 @@ async function Header() {
                                 <DropdownMenuSeparator></DropdownMenuSeparator>
                                 </>
                             }
+                            {session &&
+                            <>
+                                <DropdownMenuItem>
+                                    <Link className='font-bold'
+                                        href={`${session ? '/seeker-profile' : 'api/auth/signin'}`}>
+                                        Seeker Profile
+                                    </Link>
+                                </DropdownMenuItem>
+                                <DropdownMenuSeparator></DropdownMenuSeparator>
+                                </>
+                            }
                             
                             <DropdownMenuItem className='flex text-left py-0'>
                                 {
