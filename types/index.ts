@@ -11,6 +11,14 @@ export interface Item extends Document {
     numberOfBookings?: number
 }
 
+export interface SeekerProfile extends Document {
+    name: string,
+    hostid?: string,
+    photos: string[],
+    description: string,
+    workHistory: string,
+}
+
 export interface Booking extends Document {
     itemid?: string,
     guestid?: string,
