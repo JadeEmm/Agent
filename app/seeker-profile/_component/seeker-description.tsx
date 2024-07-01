@@ -6,35 +6,35 @@ import * as z from 'zod'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from '@/components/ui/button'
-import { useMyListingStore } from '../my-listing-store'
+import { useSeekerProfile } from '../seeker-profile'
 
 const FormSchema = z.object({
-    itemdescription: z.string().min(50, {
+    seekerDescription: z.string().min(50, {
         message: 'Description must be at least 50 characters.'
     })
 })
 
-type ItemDescriptionInput = z.infer<typeof FormSchema>
+type SeekerDescriptionInput = z.infer<typeof FormSchema>
 
-function ItemDescription({
+function SeekerDescription({
     onNext,
     onPrev
 }: {
     onNext: () => void,
     onPrev?: () => void
 }) {
-    const myListing = useMyListingStore()
+    const seekerProfile = useSeekerProfile()
 
-    const form = useForm<ItemDescriptionInput>({
+    const form = useForm<SeekerDescriptionInput>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
-            itemdescription: myListing.data.description
+            seekerDescription: seekerProfile.data.description
         }
     })
 
-    function onSubmit(data: ItemDescriptionInput) {
-        myListing.updateState({
-            description: data.itemdescription
+    function onSubmit(data: SeekerDescriptionInput) {
+        seekerProfile.updateState({
+            description: data.seekerDescription
         })
         onNext()
     }
@@ -47,7 +47,7 @@ function ItemDescription({
                 <form onSubmit={form.handleSubmit(onSubmit)}>
                     <FormField
                         control={form.control}
-                        name='itemdescription'
+                        name='seekerDescription'
                         render={({ field}) => (
                             <FormItem>
                                 <FormControl>
@@ -69,4 +69,4 @@ function ItemDescription({
     )
 }
 
-export default ItemDescription
+export default SeekerDescription
