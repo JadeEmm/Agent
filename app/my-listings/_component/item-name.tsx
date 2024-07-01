@@ -10,7 +10,7 @@ import { useMyListingStore } from '../my-listing-store'
 
 const FormSchema = z.object({
     itemname: z.string().min(4, {
-        message: 'Item name must be at least 4 characters.'
+        message: 'Name must be at least 4 characters.'
     })
 })
 
@@ -42,7 +42,7 @@ function ItemName({
 
     return (
         <div className="grid w-full gap-1 5">
-            <h2 className='text-xl sm:text-2xl py-4 font-semibold'>Item name</h2>
+            <h2 className='text-xl sm:text-2xl py-4 font-semibold'>Name</h2>
         
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -52,11 +52,8 @@ function ItemName({
                         render={({ field}) => (
                             <FormItem>
                                 <FormControl>
-                                    <Input placeholder='e.g. Macbook pro' {...field} />
+                                    <Input {...field} />
                                 </FormControl>
-                                <FormDescription>
-                                    This is a public facing name. Min 4 characters
-                                </FormDescription>
                                 <FormMessage />
                             </FormItem>
                         )}

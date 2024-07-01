@@ -9,8 +9,8 @@ import { Button } from '@/components/ui/button'
 import { useMyListingStore } from '../my-listing-store'
 
 const FormSchema = z.object({
-    itemdescription: z.string().min(4, {
-        message: 'Item description must be at least 4 characters.'
+    itemdescription: z.string().min(100, {
+        message: 'Agent description must be at least 100 characters.'
     })
 })
 
@@ -41,7 +41,7 @@ function ItemDescription({
 
     return (
         <div className="grid w-full gap-1 5">
-            <h2 className='text-xl sm:text-2xl py-4 font-semibold'>Item description</h2>
+            <h2 className='text-xl sm:text-2xl py-4 font-semibold'>Description</h2>
         
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -52,8 +52,8 @@ function ItemDescription({
                             <FormItem>
                                 <FormControl>
                                     <Textarea {...field} 
-                                    maxLength={200}
-                                    placeholder='Provide detail description and any rules' />
+                                    maxLength={1000}
+                                    placeholder='Tell job seekers a little bit about about yourself :) This may include who you are, your experience applying to jobs for seekers, and what types of roles/locations/industries you speicalize in for applications.' />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
