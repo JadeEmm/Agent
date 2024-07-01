@@ -21,11 +21,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0]
+
 const storage = getStorage(app)
-
-const imagesRef = ref(storage, 'images')
-const filesRef = ref(storage, 'files')
-
-export const storageImageRef = (token : string) => ref(imagesRef, token);
-export const storageFileRef = (token : string) => ref(filesRef, token);
-
+export const storageRef = (token : string) => ref(storage, token)
