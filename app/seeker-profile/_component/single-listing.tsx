@@ -30,22 +30,22 @@ function SingleListing({
     const [dialog, setDialog] = useState(false)
     const router = useRouter()
 
-    // const handleItemRemove = (seekerProfile: SeekerProfile) => {
-    //     setSeekerProfileToAction(SeekerProfile)
-    //     setDialog(true)
-    // }
+    const handleSeekerProfileRemove = (seekerProfile: SeekerProfile) => {
+        setSeekerProfileToAction(seekerProfile)
+        setDialog(true)
+    }
 
-    // const handleConfirm = async () => {
-    //     const result = await fetch(`api/item/${seekerProfileToAction?._id}`, {
-    //         method: 'DELETE'
-    //     })
+    const handleConfirm = async () => {
+        const result = await fetch(`api/seekerprofile/${seekerProfileToAction?._id}`, {
+            method: 'DELETE'
+        })
 
-    //     if (result.ok) {
-    //         toast.success("Profile deleted")
-    //         router.refresh()
-    //     }
+        if (result.ok) {
+            toast.success("Profile deleted")
+            router.refresh()
+        }
 
-    // }
+    }
     return (
 
         <>
@@ -63,14 +63,10 @@ function SingleListing({
                                 <ImageIcon width={100} height={100} className='text-slate-200' />
                             }
                         </div>
-                        {/* <div className="flex flex-col justify-center spacey-y-1">
-                            <p className='text-2xl sm:text-xl font-bold capitalize'>{item.name}</p>
-                            <Badge
-                                className={`${item.status === ItemStatus.LISTED ?
-                                    'bg-green-500' : 'bg-red-500'} text-white w-20 uppercase flex justify-center`}
-                            >{item.status}</Badge> */}
+                        <div className="flex flex-col justify-center spacey-y-1">
+                            <p className='text-2xl sm:text-xl font-bold capitalize'>{seekerProfile.name}</p>
 
-                            {/* <div className="flex gap-4">
+                            <div className="flex gap-4">
                                 <Link href={`seeker-profile/edit/${seekerProfile._id}`}
                                     className={cn(buttonVariants({ variant: 'ghost' }), 'text-blue-500 px-1')}
                                 >
@@ -78,13 +74,13 @@ function SingleListing({
                                 </Link>
                                 <Button
                                     variant="link"
-                                    onClick={() => handleItemRemove(item)}
+                                    onClick={() => handleSeekerProfileRemove(seekerProfile)}
                                     className={cn(buttonVariants({ variant: 'ghost' }), 'text-red-500 px-1')}
                                 >
                                     Remove
-                                </Button> */}
-                            {/* </div>
-                        </div> */}
+                                </Button>
+                            </div>
+                        </div>
                     </div>
                 ))
             }
