@@ -24,6 +24,7 @@ const SeekerProfileSchema = new Schema<SeekerProfile>({
     ethnicity: String,
     gender: String,
     resumeLink: String,
+    resumes: [String],
 }, {
     timestamps: true
 })

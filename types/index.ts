@@ -30,6 +30,7 @@ export interface SeekerProfile extends Document {
     ethnicity: string,
     gender: string,
     resumeLink: string,
+    resumes: string[],
 }
 
 export interface Booking extends Document {

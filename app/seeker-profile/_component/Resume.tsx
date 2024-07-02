@@ -7,6 +7,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Button } from '@/components/ui/button'
 import { useSeekerProfile } from '../seeker-profile'
 import { Input } from '@/components/ui/input'
+import PdfDropZone from '@/components/pdfDropZone'
 
 const FormSchema = z.object({
     resumeLink: z.string()
@@ -22,6 +23,16 @@ function Resume({
     onPrev?: () => void
 }) {
     const seekerProfile = useSeekerProfile()
+
+    const handleFileAdd = async (filesToUpload: string[]) => {
+        console.log("Addeding now!")
+        seekerProfile.updateState({ resumes: [...seekerProfile.data.resumes ?? [], ...filesToUpload]})
+    }
+
+    const handleFileDelete = (url: string) => {
+        const updatedResumes = seekerProfile.data.resumes?.filter(resume => resume !== url) ?? []
+        seekerProfile.updateState({ resumes: updatedResumes })
+    }
 
     const form = useForm<WorkHistoryInput>({
         resolver: zodResolver(FormSchema),
@@ -62,11 +73,15 @@ function Resume({
                                 )}
                             />
                         </div>
+                        <h4>If you are using the base tier without resume tailoring, upload your resume here.</h4>
+                        <PdfDropZone
+                            onFilesAdded={handleFileAdd}
+                            onFileDelete={handleFileDelete}
+                        />
                     </FormItem>
                         
-                    <div className='flex justify-between items-center py-4'>
+                    <div className='flex justify-between items-center py-4' style={{marginBottom: '-30px'}}>
                         <Button type='button' variant='ghost' onClick={onPrev}>Prev</Button>
-                        <Button type='submit' variant='ghost'>Next</Button>
                     </div>
                 </form>
             </Form>
