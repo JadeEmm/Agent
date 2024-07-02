@@ -42,7 +42,7 @@ function ListYourItemComponent() {
 
         data.set('data', JSON.stringify(
             {
-                item: seekerProfile.data
+                seekerProfile: seekerProfile.data
             }
         ))
 

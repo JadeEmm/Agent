@@ -17,7 +17,7 @@ export async function POST(
         const data = formData.get('data') as string
         const dataJson = JSON.parse(data)
         const hostid  = params.hostid
-        const seekerProfile = dataJson.seekerprofile as SeekerProfile
+        const seekerProfile = dataJson.seekerProfile as SeekerProfile
 
         if (!hostid) {
             return new NextResponse('Host not found', { status: 404 })
