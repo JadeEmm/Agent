@@ -38,7 +38,7 @@ function ItemPhotos({
             />
             <div className="flex justify-between items-center py-4">
                 <Button type='button' variant="ghost" onClick={onPrev}>Prev</Button>
-                <Button type='submit' variant='ghost'>Next</Button>
+                <Button type='submit' variant='ghost' onClick={onNext}>Next</Button>
             </div>
         </div>
     )
