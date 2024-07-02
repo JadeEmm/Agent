@@ -4,19 +4,23 @@ import React, { useState } from 'react'
 import { Progress } from "@/components/ui/progress"
 import { Button } from '@/components/ui/button'
 import ItemName from './item-name'
-import ItemDescription from './item-description'
 import ItemPhotos from './item-photos'
-import { useMyListingStore } from '../my-listing-store'
 import { useSession } from 'next-auth/react'
 import { toast } from 'sonner'
 import { Loader } from '@/components/loader'
+import WorkHistory from './work-history'
+import SeekerDescription from './seeker-description'
+import { useSeekerProfile } from '../seeker-profile'
+import PersonalDetailsTwo from './personal-details-two'
+import PersonalDetailsOne from './personal-details-one'
+import Resume from './Resume'
 
-const totalSteps = 3
+const totalSteps = 7
 const stepIncrement = 100 / totalSteps
 
 function ListYourItemComponent() {
     const { data: session } = useSession()
-    const myListing = useMyListingStore()
+    const seekerProfile = useSeekerProfile()
     const [submitting, setSubmitting] = useState(false)
     const [step, setStep] = useState(1)
 
@@ -38,13 +42,13 @@ function ListYourItemComponent() {
 
         data.set('data', JSON.stringify(
             {
-                item: myListing.data
+                seekerProfile: seekerProfile.data
             }
         ))
 
         setSubmitting(true)
         const result = await
-            fetch(`api/host/${session?.user.id}/item/create`, {
+            fetch(`api/host/${session?.user.id}/seekerprofile/create`, {
                 method: 'POST',
                 body: data
             })
@@ -52,7 +56,7 @@ function ListYourItemComponent() {
         setSubmitting(false)
 
         if (result.ok) {
-            toast("Item created")
+            toast("Profile created")
         }
 
     }
@@ -67,9 +71,13 @@ function ListYourItemComponent() {
 
                 {{
                     1: <ItemName onNext={handleNextStepChange} />,
-                    2: <ItemDescription onNext={handleNextStepChange}
+                    2: <SeekerDescription onNext={handleNextStepChange}
                         onPrev={handlePrevStepChange} />,
-                    3: <ItemPhotos onPrev={handlePrevStepChange} />
+                    3: <ItemPhotos onNext={handleNextStepChange} onPrev={handlePrevStepChange} />,
+                    4: <WorkHistory onNext={handleNextStepChange} onPrev={handlePrevStepChange}/>,
+                    5: <PersonalDetailsOne onNext={handleNextStepChange} onPrev={handlePrevStepChange}/>,
+                    6: <PersonalDetailsTwo onNext={handleNextStepChange} onPrev={handlePrevStepChange}/>,
+                    7: <Resume onNext={handleNextStepChange} onPrev={handlePrevStepChange} />,
                 }[step]}
 
                 {

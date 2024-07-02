@@ -1,6 +1,6 @@
 'use client'
 
-import { Item, ItemStatus } from '@/types'
+import { Item, ItemStatus, SeekerProfile } from '@/types'
 import React, { useState } from 'react'
 import { Badge } from "@/components/ui/badge"
 import Link from 'next/link'
@@ -23,20 +23,20 @@ import Image from 'next/image'
 import { ImageIcon } from 'lucide-react'
 
 function SingleListing({
-    listings
-}: { listings: Item[] }) {
+    seekerProfiles
+}: { seekerProfiles: SeekerProfile[] }) {
 
-    const [itemToAction, setItemToAction] = useState<Item | null>(null)
+    const [seekerProfileToAction, setSeekerProfileToAction] = useState<SeekerProfile | null>(null)
     const [dialog, setDialog] = useState(false)
     const router = useRouter()
 
-    const handleItemRemove = (item: Item) => {
-        setItemToAction(item)
+    const handleSeekerProfileRemove = (seekerProfile: SeekerProfile) => {
+        setSeekerProfileToAction(seekerProfile)
         setDialog(true)
     }
 
     const handleConfirm = async () => {
-        const result = await fetch(`api/item/${itemToAction?._id}`, {
+        const result = await fetch(`api/seekerprofile/${seekerProfileToAction?._id}`, {
             method: 'DELETE'
         })
 
@@ -50,35 +50,31 @@ function SingleListing({
 
         <>
             {
-                listings.map((item) => (
-                    <div key={item._id} className="flex gap-4 py-1 pb-1 shadow-md">
+                seekerProfiles.map((seekerProfile) => (
+                    <div key={seekerProfile._id} className="flex gap-4 py-1 pb-1 shadow-md">
 
                         {/* photo */}
                         <div>
                             {
-                                item.photos.length > 0 ?
+                                seekerProfile.photos.length > 0 ?
                                 <Image className='rounded-md' width={100} height={100}
-                                alt={item.name} src={`${item.photos.at(0)}`} />
+                                alt={seekerProfile.name} src={`${seekerProfile.photos.at(0)}`} />
                                 :
                                 <ImageIcon width={100} height={100} className='text-slate-200' />
                             }
                         </div>
                         <div className="flex flex-col justify-center spacey-y-1">
-                            <p className='text-2xl sm:text-xl font-bold capitalize'>{item.name}</p>
-                            <Badge
-                                className={`${item.status === ItemStatus.LISTED ?
-                                    'bg-green-500' : 'bg-red-500'} text-white w-20 uppercase flex justify-center`}
-                            >{item.status}</Badge>
+                            <p className='text-2xl sm:text-xl font-bold capitalize'>{seekerProfile.name}</p>
 
                             <div className="flex gap-4">
-                                <Link href={`my-listings/edit/${item._id}`}
+                                <Link href={`seeker-profile/edit/${seekerProfile._id}`}
                                     className={cn(buttonVariants({ variant: 'ghost' }), 'text-blue-500 px-1')}
                                 >
                                     Edit
                                 </Link>
                                 <Button
                                     variant="link"
-                                    onClick={() => handleItemRemove(item)}
+                                    onClick={() => handleSeekerProfileRemove(seekerProfile)}
                                     className={cn(buttonVariants({ variant: 'ghost' }), 'text-red-500 px-1')}
                                 >
                                     Remove
@@ -95,7 +91,7 @@ function SingleListing({
                     <AlertDialogHeader>
                         <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                         <AlertDialogDescription>
-                            This action cannot be undone. This will permanently remove your Agent profile.
+                            This action cannot be undone. This will permanently remove your Seeker profile.
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
