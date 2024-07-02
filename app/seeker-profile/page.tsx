@@ -11,7 +11,6 @@ import {
 import { Button } from '@/components/ui/button'
 import { Plus } from 'lucide-react'
 import ListYourItemComponent from './_component/list-your-item-component'
-import { ItemModel } from '@/schemas/item'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '../api/auth/[...nextauth]/route'
 import SingleListing from './_component/single-listing'
@@ -52,9 +51,9 @@ async function SeekerProfilePage() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 py-8">
             {
                 seekerProfile.length > 0 ? 
-                <SingleListing listings={seekerProfile} />
+                <SingleListing seekerProfiles={seekerProfile} />
                 :   
-                <p className='text-xl font-light p-4'>No Agent Profile</p>
+                <p className='text-xl font-light p-4'>No Seeker Profile</p>
 
             }
         </div>

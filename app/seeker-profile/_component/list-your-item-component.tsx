@@ -13,8 +13,9 @@ import SeekerDescription from './seeker-description'
 import { useSeekerProfile } from '../seeker-profile'
 import PersonalDetailsTwo from './personal-details-two'
 import PersonalDetailsOne from './personal-details-one'
+import Resume from './Resume'
 
-const totalSteps = 5
+const totalSteps = 7
 const stepIncrement = 100 / totalSteps
 
 function ListYourItemComponent() {
@@ -47,7 +48,7 @@ function ListYourItemComponent() {
 
         setSubmitting(true)
         const result = await
-            fetch(`api/host/${session?.user.id}/item/create`, {
+            fetch(`api/host/${session?.user.id}/seekerprofile/create`, {
                 method: 'POST',
                 body: data
             })
@@ -55,7 +56,7 @@ function ListYourItemComponent() {
         setSubmitting(false)
 
         if (result.ok) {
-            toast("Item created")
+            toast("Profile created")
         }
 
     }
@@ -76,6 +77,7 @@ function ListYourItemComponent() {
                     4: <WorkHistory onNext={handleNextStepChange} onPrev={handlePrevStepChange}/>,
                     5: <PersonalDetailsOne onNext={handleNextStepChange} onPrev={handlePrevStepChange}/>,
                     6: <PersonalDetailsTwo onNext={handleNextStepChange} onPrev={handlePrevStepChange}/>,
+                    7: <Resume onNext={handleNextStepChange} onPrev={handlePrevStepChange} />,
                 }[step]}
 
                 {
