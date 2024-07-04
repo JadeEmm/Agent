@@ -1,11 +1,13 @@
-import BrowseItems from '@/components/browse-items'
-import Footer from '@/components/footer'
-import Header from '@/components/header'
-import Hero from '@/components/hero'
-import HowItWorks from '@/components/how-it-works'
-import MaxWContainer from '@/components/max-w-container'
-import { Button } from '@/components/ui/button'
-import Link from 'next/link'
+// Import necessary components
+import BrowseItems from '@/components/browse-items';
+import Footer from '@/components/footer';
+import Header from '@/components/header';
+import Hero from '@/components/hero';
+import HowItWorks from '@/components/how-it-works';
+import KeyMetrics from '@/components/KeyMetrics';
+import MaxWContainer from '@/components/max-w-container';
+import WhyChooseAgent from '@/components/WhyChooseAgent';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -14,29 +16,82 @@ export default function Home() {
       {/* Header */}
       <Header />
      
-      {/* hero */}
+      {/* Hero */}
       <Hero />
+      
+      {/* Main Content */}
       <MaxWContainer>
 
-    {/* how it works */}
-      <HowItWorks />
+        {/* What is Agent? */}
+        <section className="py-8 sm:py-16 bg-blue-800 text-white">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-8">What is Agent?</h2>
+            <p className="text-xl font-bold mb-8">
+              Agent is the platform where you can hire dedicated job search agents to streamline your job hunt, saving time and increasing success.
+            </p>
+          </div>
+        </section>
 
-      <div className="py-4"></div>
-      <h3 className="mb-16 mt-16 text-center text-xl sm:text-4xl px-2 py-8 sm:py-16 bg-primary">
-      Why waste time!
-      </h3>
+     {/* Transforming Traditional Job Search */}
+<section className="py-8 sm:py-16">
+  <div className="max-w-3xl mx-auto text-center">
+    <h3 className="text-2xl sm:text-3xl font-bold mb-4">Transforming Traditional Job Search</h3>
+    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+      <div className="flex-1 p-6 bg-white rounded-lg shadow-lg">
+        <p className="mb-4">From Tedious to Effortless: Traditional job searches involve countless hours of searching and applying. Agent transforms this into a seamless experience where experts handle the hard work for you.</p>
+      </div>
+      <div className="flex-1 p-6 bg-white rounded-lg shadow-lg">
+        <p className="mb-4">From Uncertain to Strategic: Our agents use their industry knowledge to strategically target the best opportunities for you.</p>
+      </div>
+    </div>
+    <div className="mt-8">
+      <img src="/transform.png" alt="Transformation Icon" className="mx-auto w-24 h-24" />
+    </div>
+  </div>
+</section>
 
-      {/* browse the items*/}
-      <BrowseItems />
 
-      <div className="py-4"></div>
-      <h3 className="mt-16 mb-16 text-center text-xl sm:text-4xl px-2 py-4 sm:py-16 bg-primary">
-      Ready to connect? <Link className='font-bold' href='/my-listings'>Start now &rarr;</Link>
-      </h3>
+
+        {/* How It Works */}
+        <HowItWorks />
+        
+        {/* White space */}
+        <div className="py-12 sm:py-24"></div>
+
+        {/* Why Choose Agent */}
+        <WhyChooseAgent />
+
+        {/* Browse Items */}
+        <BrowseItems />
+        
+        {/* Key Metrics Section */}
+        <KeyMetrics />
+        
+
+
+        {/* Testimonials Section */}
+        <section className="py-8 sm:py-16">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-8">Testimonials</h2>
+            <p className="mb-4">"Thanks to Agent, I landed my dream job in half the time it would have taken on my own."</p>
+    <p className="mb-8">- Jane D., Software Engineer</p>
+          </div>
+        </section>
+
+{/* Final Call to Action */}
+<section className="py-8 sm:py-16 text-center">
+  <h3 className="text-xl sm:text-3xl font-bold mb-4">Transform your job search.</h3>
+  <h3 className="text-xl sm:text-2xl mb-4">Hire an expert agent today and get closer to your dream job.</h3>
+  <div className="bg-primary text-primary-foreground px-4 py-8 inline-block rounded-lg">
+    <Link className="font-bold text-lg sm:text-2xl" href="/signup">Sign Up Now</Link> | <Link className="font-bold text-lg sm:text-2xl" href="/learn-more">Learn More →</Link>
+  </div>
+</section>
+
+
 
       </MaxWContainer>
 
-      {/* footer */}
+      {/* Footer */}
       <Footer />
       
     </div>

@@ -1,0 +1,24 @@
+/* browse-items.module.css */
+.cardContent {
+  padding: 2rem; /* Adjust padding as needed */
+}
+
+.agentImageContainer {
+  width: 200px; /* Ensure consistent width */
+  height: 200px; /* Ensure consistent height */
+  border-radius: 50%; /* Creates circular frame */
+  overflow: hidden; /* Ensures image stays within circular frame */
+  margin-bottom: 1rem; /* Adjust margin as needed */
+}
+
+.agentImage {
+  width: 100%; /* Ensure image fills the container */
+  height: 100%; /* Ensure image fills the container */
+  object-fit: cover; /* Ensure image fills circular frame */
+}
+
+.connectLink {
+  font-size: 0.875rem; /* Adjust font size as needed */
+  font-weight: bold;
+  color: #3182ce; /* Adjust link color */
+}
