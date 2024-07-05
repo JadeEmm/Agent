@@ -37,10 +37,12 @@ applications table
 
 - id (primary key): int
 - seeker id (foreign key): int
+- agent id (foreign key); int
 - jobTitle: String
 - companyName: String
 - postingLink: String
 - dateSubmitted: String
+- postingDate: String
 - loginInfo: String
 - notes: String
 - resumeUsed: String. Null if not tailored.
