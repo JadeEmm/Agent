@@ -1,5 +1,16 @@
 import { Document } from 'mongoose'
 
+export interface JobApplication extends Document {
+    jobid: string,
+    seekerid?: string,
+    agentid?: string,
+    date: Date,
+    postingDate?: Date,
+    companyName: string,
+    jobTitle: string,
+    jobLocation: string,
+}
+
 export interface Item extends Document {
     name: string,
     hostid?: string,
