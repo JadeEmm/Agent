@@ -1,7 +1,7 @@
 import React from 'react'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '../../api/auth/[...nextauth]/route'
-import { redirect, useRouter } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import Image from 'next/image';
 import Link from 'next/link';
 import { buttonVariants } from '@/components/ui/button';
@@ -20,13 +20,8 @@ async function MainDashboard() {
     const increaseCredit = "/";
 
   return (
-    // <>
-    //     <h1 className='text-2xl sm:text-4xl py-8 font-bold'>Seeker Dashboard</h1>  
-    // </>
-  
- 
-          
-
+      <div className="max-w-xl mx-auto text-center">
+        <h1 className='text-2xl sm:text-4xl py-8 font-bold'>Seeker Dashboard</h1>
           <div className="grid gap-x-4 gap-y-4 grid-cols-2 mt-20">
             <div className="flex items-center justify-center mr-0">
               <div className="flex flex-col items-center bg-lime-200 rounded-lg p-6">
@@ -59,8 +54,7 @@ async function MainDashboard() {
               </div>
             </div>
           </div>
-
-        
+        </div>
   )
 }
 
