@@ -1,0 +1,46 @@
+seeker table
+
+- id (primary key): int
+- name: String,
+- photos: [String],
+- description: String,
+- workHistory: String,
+- fullName: String,
+- address: String,
+- phoneNumber: String,
+- emailAddress: String,
+- education: String,
+- relevantLinks: String,
+- workAuthorization: Boolean,
+- requiresSponsorship: Boolean,
+- disability: Boolean,
+- veteran: Boolean,
+- ethnicity: String,
+- gender: String,
+- resumeLink: String,
+- resumes: [String]
+- numApps: int
+- numCreditsRemaining: int
+- allAgents (foreign keys): [int]
+- activeAgents (foreign keys): [int]
+
+agent table
+
+- id (primary key): int
+- name: String,
+- photos: [String],
+- description: String
+- allSeekers (foreign keys): [int]
+- activeSeekers (foreign keys): [int]
+
+applications table
+
+- id (primary key): int
+- seeker id (foreign key): int
+- jobTitle: String
+- companyName: String
+- postingLink: String
+- dateSubmitted: String
+- loginInfo: String
+- notes: String
+- resumeUsed: String. Null if not tailored.
