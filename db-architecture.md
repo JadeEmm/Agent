@@ -23,7 +23,7 @@ seeker table
 - numCredits: int
 - allAgents (foreign keys): [int]
 - activeAgent (foreign key): int
-- preferedLocation: String,
+- preferredLocation: String,
 - preferredCompanySize: String,
 - preferredIndustry: String,
 - preferredSalary: String
