@@ -1,13 +1,6 @@
 
 
 import React from 'react'
-import {
-    Dialog,
-    DialogContent,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-  } from "@/components/ui/dialog"
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Plus } from 'lucide-react'
 import { JobApplicationModel } from '@/schemas/jobApplication'
@@ -16,6 +9,7 @@ import { authOptions } from '../../../api/auth/[...nextauth]/route'
 import { redirect, useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
+import { ApplicationTable } from '@/components/applicationTable'
 
 
 async function MainDashboardJobs() {
@@ -39,8 +33,8 @@ async function MainDashboardJobs() {
     } 
 
   return (
-    <div className="flex flex-col">
-      <div className="border border-red w-full h-64 flex flex-row">
+    <div className="flex flex-col h-full">
+      <div className="w-full h-64 flex flex-row">
         <div className='border border-gray w-1/2 p-4'>
           <h3><strong>Your Agent: </strong></h3>
 
@@ -75,11 +69,11 @@ async function MainDashboardJobs() {
         <h3><strong>Your Preferences: </strong></h3>
         </div>
       </div>
-      <div className="border flex-1 border-red w-full h-80 max-h-full p-6">
-        <h3><strong>Applications: </strong></h3>
+      <div className="flex flex-col grow w-full h-3/6 p-6 pb-12">
+        <h3><strong>Applications</strong></h3>
+        <ApplicationTable userid={session?.user.id} />
       </div>
-        {/* <h1 className='text-2xl sm:text-4xl py-8 font-bold'>Seeker Jobs Edit</h1>   */}
-    </div>
+      </div>
   )
 }
 
