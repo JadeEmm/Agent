@@ -20,7 +20,7 @@ seeker table
 - resumeLink: String,
 - resumes: [String]
 - numApps: int
-- numCreditsRemaining: int
+- numCredits: int
 - allAgents (foreign keys): [int]
 - activeAgents (foreign keys): [int]
 
