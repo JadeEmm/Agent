@@ -22,7 +22,7 @@ seeker table
 - numApps: int
 - numCredits: int
 - allAgents (foreign keys): [int]
-- activeAgents (foreign keys): [int]
+- activeAgent (foreign key): int
 
 agent table
 
