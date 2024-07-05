@@ -53,3 +53,11 @@ applications table
 - loginInfo: String
 - notes: String
 - resumeUsed: String. Null if not tailored.
+
+transactions table
+
+- id (primary key): int
+- seeker id (foreign key): int
+- agent id (foreign key); int
+- date: String
+- amount: int
