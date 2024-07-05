@@ -23,15 +23,22 @@ seeker table
 - numCredits: int
 - allAgents (foreign keys): [int]
 - activeAgent (foreign key): int
+- preferedLocation: String,
+- preferredCompanySize: String,
+- preferredIndustry: String,
+- preferredSalary: String
 
 agent table
 
 - id (primary key): int
+- email: String
+- phoneNumer: String
 - name: String,
 - photos: [String],
 - description: String
 - allSeekers (foreign keys): [int]
 - activeSeekers (foreign keys): [int]
+- specializations: [String]
 
 applications table
 
