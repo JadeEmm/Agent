@@ -38,7 +38,11 @@ async function HeaderHost() {
                     </Link>
                     <Link href="/my-listings"
                         className='hidden md:flex md:font-bold'>
-                        My listings
+                        Agent Profile
+                    </Link>
+                    <Link href="/seeker-profile"
+                        className='hidden md:flex md:font-bold'>
+                        Seeker Profile
                     </Link>
                 </div>
 
@@ -79,6 +83,12 @@ async function HeaderHost() {
                             <Link
                                 href={'/my-listings'}>
                                 My listings
+                            </Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem className='flex lg:hidden'>
+                            <Link
+                                href={'/seeker-profile'}>
+                                Seeker Profile
                             </Link>
                         </DropdownMenuItem>
                         <DropdownMenuItem className='flex text-left py-0'>

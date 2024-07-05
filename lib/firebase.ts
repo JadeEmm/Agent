@@ -7,6 +7,8 @@ import {
     ref
 } from 'firebase/storage'
 
+console.log(process.env.FIREBASE_STORAGE_BUCKET)
+
 const firebaseConfig = {
     apiKey: process.env.FIREBASE_API_KEY,
     authDomain: process.env.FIREBASE_AUTH_DOMAIN,
@@ -17,8 +19,8 @@ const firebaseConfig = {
     measurementId: process.env.FIREBASE_MEASUREMENT_ID
 };
 
+// Initialize Firebase
+const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0]
 
-  const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0]
-
-  const storage = getStorage(app)
-  export const storageRef = (token : string) => ref(storage, token)
+const storage = getStorage(app, process.env.FIREBASE_URL)
+export const storageRef = (token : string) => ref(storage, token)
