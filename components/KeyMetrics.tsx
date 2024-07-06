@@ -16,9 +16,9 @@ const KeyMetric: React.FC<KeyMetricProps> = ({ value, caption }) => {
 
 const KeyMetrics: React.FC = () => {
   const metrics = [
-    { value: "500+", caption: "Hired Agents" },
-    { value: "10,000+", caption: "Applications Submitted" },
-    { value: "+30%", caption: "Application to Interview Conversion Success Rate" },
+    { value: "1+", caption: "Hired Agents" },
+    { value: "50+", caption: "Applications Submitted" },
+    { value: "1st", caption: "  Be One of the First Submissions With Fast Track" },
   ];
 
   return (

@@ -23,13 +23,13 @@ const HowItWorks: React.FC = () => {
           </div>
           <div className="flex items-center justify-center">
             <div className="flex flex-col items-center justify-center bg-white rounded-lg h-full p-6">
-              <h3 className="text-xl font-bold mb-4">3. Collaborate with Your Agent</h3>
-              <p className="text-center">Develop a personalized application strategy.</p>
+              <h3 className="text-xl font-bold mb-4">3. Select a Plan</h3>
+              <p className="text-center">Choose your personalized application strategy.</p>
             </div>
           </div>
           <div className="flex items-center justify-center">
             <div className="flex flex-col items-center justify-center bg-white rounded-lg h-full p-6">
-              <h3 className="text-xl font-bold mb-4">4. Agent Submits Applications</h3>
+              <h3 className="text-xl font-bold mb-4">4. Agent Searches and Submits Applications</h3>
               <p className="text-center">Submit applications on your behalf.</p>
             </div>
           </div>
