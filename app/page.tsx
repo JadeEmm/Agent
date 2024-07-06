@@ -64,7 +64,29 @@ export default function Home() {
         {/* Browse Items */}
         <BrowseItems />
         
+        {/* Final Call to Action */}
+<section className="py-8 sm:py-16 text-center">
+<div className="bg-primary text-primary-foreground px-4 py-8 inline-block rounded-lg">
+    <Link className="font-bold text-lg sm:text-2xl" href="/signup">Connect with an Agent</Link>
+</div>
+  <h3 className="text-xl sm:text-2xl mb-4">Create an Account or Sign In</h3>
+</section>
+
         {/* Key Metrics Section */}
+
+        <section className="py-8 sm:py-1 bg-blue-800 text-white">
+  <div className="max-w-md mx-auto text-center">
+    <div className="p-4 bg-blue-800 text-white rounded-lg hover:scale-105 transform transition-all duration-300">
+      <h2 className="text-3xl font-bold mb-0">Join the Agent Success Story</h2>
+    </div>
+  </div>
+</section>
+
+
+
+
+         
+
         <KeyMetrics />
         
 

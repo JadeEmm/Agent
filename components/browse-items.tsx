@@ -21,11 +21,10 @@ const BrowseItems: React.FC = () => {
               </div>
               <p className="mt-4 text-sm font-semibold">Specializes in software engineering roles</p>
               <p className="mt-1 text-sm">5 years of industry experience</p>
-              <p className="mt-1 text-sm">Success rate: 85%</p>
+              <p className="mt-1 text-sm">Applications Sumbitted: 100+</p>
             </CardContent>
             <CardFooter>
               <Link href="/agents/adam" className={styles.connectLink}>
-                Connect &rarr;
               </Link>
             </CardFooter>
           </Card>
@@ -40,11 +39,10 @@ const BrowseItems: React.FC = () => {
               </div>
               <p className="mt-4 text-sm font-semibold">Expert in data science positions</p>
               <p className="mt-1 text-sm">7 years of industry experience</p>
-              <p className="mt-1 text-sm">Success rate: 90%</p>
+              <p className="mt-1 text-sm">Applications Sumbitted: 100+</p>
             </CardContent>
             <CardFooter>
               <Link href="/agents/jonas" className={styles.connectLink}>
-                Connect &rarr;
               </Link>
             </CardFooter>
           </Card>
@@ -59,11 +57,10 @@ const BrowseItems: React.FC = () => {
               </div>
               <p className="mt-4 text-sm font-semibold">Focuses on UX/UI design roles</p>
               <p className="mt-1 text-sm">6 years of industry experience</p>
-              <p className="mt-1 text-sm">Success rate: 88%</p>
+              <p className="mt-1 text-sm">Applications Sumbitted: 500+</p>
             </CardContent>
             <CardFooter>
               <Link href="/agents/may" className={styles.connectLink}>
-                Connect &rarr;
               </Link>
             </CardFooter>
           </Card>
