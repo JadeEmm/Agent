@@ -19,6 +19,8 @@ async function MainDashboard() {
       hostid: session?.user.id
     });
 
+    const linkToJobs = "/dashboard/seeker/jobs"
+
     // temporary consts until fetching is possible
     const agent = {name: "Shaishav Shah" };
     const increaseCredit = "/";
@@ -28,10 +30,12 @@ async function MainDashboard() {
         <h1 className='text-2xl sm:text-4xl py-8 font-bold'>Seeker Dashboard</h1>
           <div className="grid gap-x-4 gap-y-4 grid-cols-2 mt-20">
             <div className="flex items-center justify-center mr-0">
-              <div className="flex flex-col items-center bg-lime-200 rounded-lg p-6">
-                <h3 className="text-xl mb-4">Applications Completed</h3>
-                <p className="text-xl font-bold mb-4">{seekerProfiles[0].numApps ? seekerProfiles[0].numApps : 0}</p>
-              </div>
+              <Link href={linkToJobs}>
+                <div className="flex flex-col items-center bg-lime-200 rounded-lg p-6">
+                  <h3 className="text-xl mb-4">Applications Completed</h3>
+                  <p className="text-xl font-bold mb-4">{seekerProfiles[0].numApps ? seekerProfiles[0].numApps : 0}</p>
+                </div>
+              </Link>
             </div>
             <div className="flex items-center justify-center">
               <div className="flex bg-purple-100 rounded-lg p-6 max-w-md">
