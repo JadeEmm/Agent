@@ -26,7 +26,7 @@ function Footer() {
             <p className="font-bold">For Job Seekers</p>
             <div className="flex flex-col gap-1 py-2">
               <Link href='/hire-an-agent' className='text-sm'>Hire an Agent</Link>
-              <Link href='/browse-agents' className='text-sm'>Browse Agents</Link>
+              <Link href='/services-and-pricing' className='text-sm'>Services & Pricing</Link>
               <Link href='/blog' className='text-sm'>Testimonials</Link>
             </div>
             <p className="font-bold mt-4">For Agents</p>
