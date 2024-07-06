@@ -19,14 +19,16 @@ async function Header() {
             <nav className="bg-primary flex item-center justify-between p-4 lg:px-8">
                 {/* logo */}
                 <div className="flex lg:flex-1">
-                    <Link href="/">
-                        <span className='sr-only'>Logo</span>
-                        <Image
-                            width={100}
-                            height={100}
-                            className='w-auto h-auto'
-                            src='/logo.png' alt='logo'
-                        />
+                    <Link href="/page">
+                        <a>
+                            <span className='sr-only'>Logo</span>
+                            <Image
+                                width={100}
+                                height={100}
+                                className='w-auto h-auto'
+                                src='/logo.png' alt='logo'
+                            />
+                        </a>
                     </Link>
                 </div>
 
@@ -86,4 +88,4 @@ async function Header() {
     )
 }
 
-export default Header
+export default Header;

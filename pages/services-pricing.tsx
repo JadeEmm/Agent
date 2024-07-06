@@ -1,7 +1,8 @@
 // pages/services-and-pricing.tsx
 import React from 'react';
 import Head from 'next/head';
-
+import Header from '@/components/header';
+      
 const ServicesAndPricing: React.FC = () => {
   return (
     <>
