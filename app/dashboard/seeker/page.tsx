@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils'
+import { SeekerProfileModel } from '@/schemas/seekerprofile';
 
 async function MainDashboard() {
     const session = await getServerSession(authOptions)
@@ -14,9 +15,12 @@ async function MainDashboard() {
         redirect('/api/auth/signin')
     }
 
+    let seekerProfiles = await SeekerProfileModel.find({
+      hostid: session?.user.id
+    });
+
     // temporary consts until fetching is possible
     const agent = {name: "Shaishav Shah" };
-    const seeker = {numApps: 20, numCredits: 30, photos: ["./agent-may.jpg"]};
     const increaseCredit = "/";
 
   return (
@@ -26,7 +30,7 @@ async function MainDashboard() {
             <div className="flex items-center justify-center mr-0">
               <div className="flex flex-col items-center bg-lime-200 rounded-lg p-6">
                 <h3 className="text-xl mb-4">Applications Completed</h3>
-                <p className="text-xl font-bold mb-4">{seeker.numApps}</p>
+                <p className="text-xl font-bold mb-4">{seekerProfiles[0].numApps ? seekerProfiles[0].numApps : 0}</p>
               </div>
             </div>
             <div className="flex items-center justify-center">
@@ -44,11 +48,11 @@ async function MainDashboard() {
               <div className="flex bg-orange-100 rounded-lg p-6 max-w-md">
                 <div className="flex flex-col pr-5">
                   <h3 className="text-xl mb-4">Credit:</h3>
-                  <p className="text-xl font-bold mb-4">${seeker.numCredits}</p>
+                  <p className="text-xl font-bold mb-4">${seekerProfiles[0].numCredits ? seekerProfiles[0].numCredits : 0}</p>
                 </div>
                 <div className="flex flex-col items-center mr-4">
                   <Link href={increaseCredit} className={cn(buttonVariants({variant: 'secondary'}),"")} >
-                      Increase credit
+                      Add credit
                   </Link>
                 </div>
               </div>
