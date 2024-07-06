@@ -2,8 +2,6 @@ import { connectToDB } from "@/lib/mongodb"
 import { SeekerProfileModel } from "@/schemas/seekerprofile"
 import { SeekerProfile } from "@/types"
 import { NextResponse } from "next/server"
-import { describe } from "node:test"
-
 
 export async function POST(
     request: Request,
@@ -44,7 +42,15 @@ export async function POST(
             ethnicity: seekerProfile.ethnicity,
             gender: seekerProfile.gender,
             resumeLink: seekerProfile.resumeLink,
-            resumes: seekerProfile.resumes ?? []
+            resumes: seekerProfile.resumes ?? [],
+            numApps: seekerProfile.numApps,
+            numCredits: seekerProfile.numCredits,
+            allAgents: seekerProfile.allAgents ?? [],
+            activeAgent: seekerProfile.activeAgent,
+            preferredLocation: seekerProfile.preferredLocation,
+            preferredCompanySize: seekerProfile.preferredCompanySize,
+            preferredIndustry: seekerProfile.preferredIndustry,
+            preferredSalary: seekerProfile.preferredSalary
         })
 
         return NextResponse.json({

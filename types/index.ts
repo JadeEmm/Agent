@@ -42,6 +42,14 @@ export interface SeekerProfile extends Document {
     gender: string,
     resumeLink: string,
     resumes: string[],
+    numApps: Number,
+    numCredits: Number,
+    allAgents: [Number],
+    activeAgent: Number,
+    preferredLocation: String,
+    preferredCompanySize: String,
+    preferredIndustry: String,
+    preferredSalary: String
 }
 
 export interface Booking extends Document {

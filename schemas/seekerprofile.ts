@@ -25,6 +25,14 @@ const SeekerProfileSchema = new Schema<SeekerProfile>({
     gender: String,
     resumeLink: String,
     resumes: [String],
+    numApps: Number,
+    numCredits: Number,
+    allAgents: [Number],
+    activeAgent: Number,
+    preferredLocation: String,
+    preferredCompanySize: String,
+    preferredIndustry: String,
+    preferredSalary: String
 }, {
     timestamps: true
 })
