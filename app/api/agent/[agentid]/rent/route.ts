@@ -1,7 +1,7 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 import { connectToDB } from "@/lib/mongodb"
 import { BookingModel } from "@/schemas/booking"
-import { ItemModel } from "@/schemas/item"
+import { ItemModel } from "@/schemas/agent"
 import { BookingStatus, Item } from "@/types"
 import { isSameDay } from "date-fns"
 import { getServerSession } from "next-auth"
