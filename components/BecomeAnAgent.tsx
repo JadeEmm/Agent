@@ -11,12 +11,15 @@ const BecomeAnAgent: React.FC = () => {
         </div>
       </header>
 
-      <section className="py-16 container-fluid text-white">
+      <section className="py-16 container-fluid text-black bg-white">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <div className="mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold theme-text mb-4">Join Us as an Agent</h2>
+            <p className="text-xl mb-4">
+              Become a key player in connecting job seekers with their dream jobs.
+            </p>
             <p className="text-xl">
-              Apply to jobs on behalf of job seekers and earn competitive compensation. Join our platform to maximize your earning potential with our advanced tools for efficient job application management.
+              Search and Apply to jobs on behalf of job seekers and earn competitive compensation.
             </p>
           </div>
 
@@ -24,7 +27,7 @@ const BecomeAnAgent: React.FC = () => {
             <div className="card p-6 rounded-lg shadow-lg">
               <h3 className="text-2xl font-bold mb-4">Lucrative Earnings</h3>
               <p>
-                Earn competitive compensation immediately upon successful placements.
+                Earn fast and boost your income as you submit applications.
               </p>
             </div>
             <div className="card p-6 rounded-lg shadow-lg">
@@ -39,6 +42,8 @@ const BecomeAnAgent: React.FC = () => {
                 Work independently, managing your schedule and workload to maximize your earnings potential.
               </p>
             </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
             <div className="card p-6 rounded-lg shadow-lg">
               <h3 className="text-2xl font-bold mb-4">Market Demand</h3>
               <p>
@@ -81,10 +86,10 @@ const BecomeAnAgent: React.FC = () => {
             <p className="text-lg mb-4">
               Ready to leverage your expertise and our platform to accelerate your earnings? Join us today and become a pivotal part of our mission to transform job searches.
             </p>
-            <p className="text-lg mb-8">
+            <p className="text-2xl mb-8">
               Click below to create your Agent profile and start maximizing your earnings with us.
             </p>
-            <button className="bg-blue-800 text-white py-3 px-6 rounded-md font-bold text-xl hover:bg-blue-600 transition duration-300">Get Started</button>
+            <button className="bg-blue-800 text-white py-3 px-6 rounded-md font-bold text-xl hover:bg-blue-600 transition duration-300">Get Started as An Agent</button>
           </div>
         </div>
       </section>

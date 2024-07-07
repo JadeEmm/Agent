@@ -20,7 +20,7 @@ async function Header() {
                 {/* logo */}
                 <div className="flex lg:flex-1">
                     <Link href="/page">
-                        <a>
+                        
                             <span className='sr-only'>Logo</span>
                             <Image
                                 width={100}
@@ -28,7 +28,7 @@ async function Header() {
                                 className='w-auto h-auto'
                                 src='/logo.png' alt='logo'
                             />
-                        </a>
+                        
                     </Link>
                 </div>
 
