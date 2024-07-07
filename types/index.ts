@@ -15,15 +15,11 @@ export interface JobApplication extends Document {
     resumeUsed: string,
 }
 
-export interface Item extends Document {
+export interface Agent extends Document {
     name: string,
-    hostid?: string,
-    price: Price,
     photos: string[],
     description: string,
     status: string,
-    category: string,
-    numberOfBookings?: number
 }
 
 export interface SeekerProfile extends Document {
