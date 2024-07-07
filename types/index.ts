@@ -4,11 +4,15 @@ export interface JobApplication extends Document {
     jobid: string,
     seekerid?: string,
     agentid?: string,
-    date: Date,
+    dateSubmitted: Date,
     postingDate?: Date,
     companyName: string,
     jobTitle: string,
     jobLocation: string,
+    postingLink: string,
+    loginInfo: string,
+    notes: string,
+    resumeUsed: string,
 }
 
 export interface Item extends Document {
