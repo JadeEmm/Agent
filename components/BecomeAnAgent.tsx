@@ -89,7 +89,7 @@ const BecomeAnAgent: React.FC = () => {
             <p className="text-2xl mb-8">
               Click below to create your Agent profile and start maximizing your earnings with us.
             </p>
-            <button className="bg-blue-800 text-white py-3 px-6 rounded-md font-bold text-xl hover:bg-blue-600 transition duration-300">Get Started as An Agent</button>
+            <button className="bg-blue-800 text-white py-3 px-6 rounded-md font-bold text-2xl hover:bg-blue-600 transition duration-300">Get Started as An Agent</button>
           </div>
         </div>
       </section>
