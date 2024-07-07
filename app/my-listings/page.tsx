@@ -8,7 +8,7 @@ import {
   } from "@/components/ui/dialog"
 import { Button } from '@/components/ui/button'
 import { Plus } from 'lucide-react'
-import ListYourItemComponent from './_component/list-your-item-component'
+import ListYourAgentComponent from './_component/list-your-agent-component'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '../api/auth/[...nextauth]/route'
 import { redirect, useRouter } from 'next/navigation'
@@ -40,7 +40,7 @@ async function MyListingsPage() {
                     <Button variant="outline"><Plus className='mr-4 h-4 w-4' />Create Agent Profile</Button>
                 </DialogTrigger>
                 <DialogContent>
-                    <ListYourItemComponent />
+                    <ListYourAgentComponent />
                 </DialogContent>
             </Dialog> 
             : <></>

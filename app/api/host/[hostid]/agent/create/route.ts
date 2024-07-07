@@ -15,7 +15,7 @@ export async function POST(
         const data = formData.get('data') as string
         const dataJson = JSON.parse(data)
         const agentId  = params.hostid
-        const agent = dataJson.item as Agent
+        const agent = dataJson.agent as Agent
 
         if (!agentId) {
             return new NextResponse('Agent not found', { status: 404 })

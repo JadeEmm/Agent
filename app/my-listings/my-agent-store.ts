@@ -1,8 +1,8 @@
 import { create } from 'zustand'
 
 export type AgentType = {
-    name?: string,
-    description?: string,
+    agentName?: string,
+    agentDescription?: string,
     photos?: string[],
 }
 
@@ -13,8 +13,8 @@ export interface AgentState {
 }
 export const useMyAgentStore = create<AgentState>()((set) => ({
     data: {
-        name: '',
-        description: '',
+        agentName: '',
+        agentDescription: '',
         photos: [],
     },
     updateState: (data) => set((state) => ({
@@ -22,8 +22,8 @@ export const useMyAgentStore = create<AgentState>()((set) => ({
     })),
     restart: () => set({
         data: {
-            name: '',
-            description: '',
+            agentName: '',
+            agentDescription: '',
             photos: [],
         }
     })
