@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils'
 import { SeekerProfileModel } from '@/schemas/seekerprofile';
-import { ItemModel } from '@/schemas/item';
+import { AgentModel } from '@/schemas/agent';
 import { ImageIcon } from 'lucide-react';
 
 async function MainDashboard() {
@@ -22,8 +22,8 @@ async function MainDashboard() {
     });
 
     // active agent
-    const agents = seekerProfiles[0].agentid ? await ItemModel.find({
-      hostid: seekerProfiles[0].agentid
+    const agents = seekerProfiles[0].agentid ? await AgentModel.find({
+      _id: seekerProfiles[0].agentid
     }) : null;
 
     const linkToJobs = "/dashboard/seeker/jobs"
