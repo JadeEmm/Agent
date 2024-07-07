@@ -1,6 +1,6 @@
 seeker table
 
-- id (primary key): int
+- id (primary key): String
 - name: String,
 - photos: [String],
 - description: String,
@@ -21,8 +21,8 @@ seeker table
 - resumes: [String]
 - numApps: int
 - numCredits: int
-- allAgents (foreign keys): [int]
-- activeAgent (foreign key): int
+- allAgents (foreign keys): [String]
+- activeAgent (foreign key): String
 - preferredLocation: String,
 - preferredCompanySize: String,
 - preferredIndustry: String,
@@ -30,26 +30,27 @@ seeker table
 
 agent table
 
-- id (primary key): int
+- id (primary key): String
 - email: String
 - phoneNumer: String
 - name: String,
 - photos: [String],
 - description: String
-- allSeekers (foreign keys): [int]
-- activeSeekers (foreign keys): [int]
+- allSeekers (foreign keys): [String]
+- activeSeekers (foreign keys): [String]
 - specializations: [String]
 
 applications table
 
-- id (primary key): int
-- seeker id (foreign key): int
-- agent id (foreign key); int
+- id (primary key): String
+- seeker id (foreign key): String
+- agent id (foreign key); String
 - jobTitle: String
 - companyName: String
 - postingLink: String
 - dateSubmitted: String
 - postingDate: String
+- jobLocation: String
 - loginInfo: String
 - notes: String
 - resumeUsed: String. Null if not tailored.
@@ -57,7 +58,7 @@ applications table
 transactions table
 
 - id (primary key): int
-- seeker id (foreign key): int
-- agent id (foreign key); int
+- seeker id (foreign key): String
+- agent id (foreign key); String
 - date: String
 - amount: int
