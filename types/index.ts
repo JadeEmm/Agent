@@ -16,6 +16,7 @@ export interface JobApplication extends Document {
 }
 
 export interface Agent extends Document {
+    agentId: string // the session.user.id of the agent creating their profile
     name: string,
     photos: string[],
     description: string,

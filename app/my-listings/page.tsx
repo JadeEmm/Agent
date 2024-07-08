@@ -23,7 +23,7 @@ async function MyListingsPage() {
     }
 
     const agents = await AgentModel.find({
-        _id: session?.user.id
+        agentId: session?.user.id
     })
 
 

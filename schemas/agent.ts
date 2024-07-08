@@ -2,6 +2,7 @@ import { Agent, ItemStatus } from "@/types";
 import mongoose, { Schema, model, models } from "mongoose";
 
 const AgentSchema = new Schema<Agent>({
+    agentId: String,
     name: String,
     photos: [String],
     description: String,

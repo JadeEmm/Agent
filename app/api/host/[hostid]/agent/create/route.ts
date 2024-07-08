@@ -24,6 +24,7 @@ export async function POST(
         await connectToDB()
 
         const savedAgentProfile = await AgentModel.create({
+            agentId: agentId,
             name: agent.name,
             description: agent.description,
             photos: agent.photos ?? [],
