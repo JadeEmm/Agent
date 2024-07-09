@@ -3,20 +3,20 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
-import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from '@/components/ui/form'
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { useMyListingStore } from '../my-listing-store'
+import { useMyAgentStore } from '../my-agent-store'
 
 const FormSchema = z.object({
-    itemname: z.string().min(4, {
+    agentname: z.string().min(4, {
         message: 'Name must be at least 4 characters.'
     })
 })
 
-type ItemNameInput = z.infer<typeof FormSchema>
+type AgentNameInput = z.infer<typeof FormSchema>
 
-function ItemName({
+function AgentName({
     onNext,
     onPrev
 }: {
@@ -24,18 +24,18 @@ function ItemName({
     onPrev?: () => void
 }) {
 
-    const myListing = useMyListingStore()
+    const agent = useMyAgentStore()
 
-    const form = useForm<ItemNameInput>({
+    const form = useForm<AgentNameInput>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
-            itemname: myListing.data.name
+            agentname: agent.data.name
         }
     })
 
-    function onSubmit(data: ItemNameInput) {
-        myListing.updateState({
-            name: data.itemname
+    function onSubmit(data: AgentNameInput) {
+        agent.updateState({
+            name: data.agentname
         })
         onNext()
     }
@@ -48,7 +48,7 @@ function ItemName({
                 <form onSubmit={form.handleSubmit(onSubmit)}>
                     <FormField
                         control={form.control}
-                        name='itemname'
+                        name='agentname'
                         render={({ field}) => (
                             <FormItem>
                                 <FormControl>
@@ -68,4 +68,4 @@ function ItemName({
     )
 }
 
-export default ItemName
+export default AgentName

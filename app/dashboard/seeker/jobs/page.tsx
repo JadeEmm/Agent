@@ -9,7 +9,7 @@ import { authOptions } from '../../../api/auth/[...nextauth]/route'
 import { redirect, useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
-import { ApplicationTable } from '@/components/applicationTable'
+import { ApplicationTable } from '../../../../components/applicationTable'
 
 
 async function MainDashboardJobs() {

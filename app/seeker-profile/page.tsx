@@ -14,7 +14,7 @@ import ListYourItemComponent from './_component/list-your-item-component'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '../api/auth/[...nextauth]/route'
 import SingleListing from './_component/single-listing'
-import { redirect, useRouter } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import { SeekerProfileModel } from '@/schemas/seekerprofile'
 
 async function SeekerProfilePage() {

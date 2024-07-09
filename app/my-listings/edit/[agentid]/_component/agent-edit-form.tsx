@@ -1,7 +1,7 @@
 'use client'
 
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import { Item, ItemStatus } from '@/types'
+import { Agent, ItemStatus } from '@/types'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import React from 'react'
@@ -10,16 +10,14 @@ import * as z from 'zod'
 import { Switch } from "@/components/ui/switch"
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Button } from '@/components/ui/button'
 import { toast } from 'sonner'
 import ImageDropZone from '@/components/imageDropZone'
-import { itemCategories } from '@/data'
 
 const FormSchema = z.object({
     status: z.boolean(),
-    itemname: z.string(),
-    itemdescription: z.string().min(4, {
+    agentName: z.string(),
+    agentDescription: z.string().min(4, {
         message: 'Agent description must be at least 100 characters.'
     }),
     photos: z.array(z.string())
@@ -27,38 +25,39 @@ const FormSchema = z.object({
 
 type FormInput = z.infer<typeof FormSchema>
 
-function ItemEditForm({
-    item
-}: { item: Item }) {
+function AgentEditForm({
+    agent
+}: { agent: Agent }) {
 
     const router = useRouter()
 
     const form = useForm<FormInput>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
-            status: item.status === ItemStatus.LISTED,
-            itemname: item?.name,
-            itemdescription: item?.description,
-            photos: item?.photos
+            status: agent.status === ItemStatus.LISTED,
+            agentName: agent?.name,
+            agentDescription: agent?.description,
+            photos: agent?.photos
         }
     })
 
     async function onSubmit(formInput: FormInput) {
 
         const data = {
-            ...formInput
+            ...formInput,
+            agentId: agent?.agentId,
         }
 
-        const result = await fetch(`/api/item/${item._id}`, {
+        const result = await fetch(`/api/agent/${agent._id}`, {
             method: 'PATCH',
             body: JSON.stringify(data)
         })
 
         if (result.ok) {
-            toast.success("item updated.")
+            toast.success("agent updated.")
             router.refresh()
         } else {
-            toast.error("Failed to update item.")
+            toast.error("Failed to update agent.")
         }
     }
 
@@ -108,7 +107,7 @@ function ItemEditForm({
                     <div className="bg-slate-100 p-2 rounded-md">
                         <FormField
                             control={form.control}
-                            name="itemname"
+                            name="agentName"
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel>
@@ -127,7 +126,7 @@ function ItemEditForm({
                     <div className="bg-slate-100 p-2 rounded-md">
                         <FormField
                             control={form.control}
-                            name='itemdescription'
+                            name='agentDescription'
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel>
@@ -172,4 +171,4 @@ function ItemEditForm({
     )
 }
 
-export default ItemEditForm
+export default AgentEditForm

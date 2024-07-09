@@ -4,22 +4,23 @@ export interface JobApplication extends Document {
     jobid: string,
     seekerid?: string,
     agentid?: string,
-    date: Date,
+    dateSubmitted: Date,
     postingDate?: Date,
     companyName: string,
     jobTitle: string,
     jobLocation: string,
+    postingLink: string,
+    loginInfo: string,
+    notes: string,
+    resumeUsed: string,
 }
 
-export interface Item extends Document {
+export interface Agent extends Document {
+    agentId: string // the session.user.id of the agent creating their profile
     name: string,
-    hostid?: string,
-    price: Price,
     photos: string[],
     description: string,
     status: string,
-    category: string,
-    numberOfBookings?: number
 }
 
 export interface SeekerProfile extends Document {
@@ -42,6 +43,14 @@ export interface SeekerProfile extends Document {
     gender: string,
     resumeLink: string,
     resumes: string[],
+    numApps: Number,
+    numCredits: Number,
+    allAgents: [Number],
+    activeAgent: Number,
+    preferredLocation: String,
+    preferredCompanySize: String,
+    preferredIndustry: String,
+    preferredSalary: String
 }
 
 export interface Booking extends Document {

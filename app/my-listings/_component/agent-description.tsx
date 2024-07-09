@@ -3,38 +3,38 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
-import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from '@/components/ui/form'
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from '@/components/ui/button'
-import { useMyListingStore } from '../my-listing-store'
+import { useMyAgentStore } from '../my-agent-store'
 
 const FormSchema = z.object({
-    itemdescription: z.string().min(100, {
+    agentdescription: z.string().min(100, {
         message: 'Agent description must be at least 100 characters.'
     })
 })
 
-type ItemDescriptionInput = z.infer<typeof FormSchema>
+type AgentDescriptionInput = z.infer<typeof FormSchema>
 
-function ItemDescription({
+function AgentDescription({
     onNext,
     onPrev
 }: {
     onNext: () => void,
     onPrev?: () => void
 }) {
-    const myListing = useMyListingStore()
+    const agent = useMyAgentStore()
 
-    const form = useForm<ItemDescriptionInput>({
+    const form = useForm<AgentDescriptionInput>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
-            itemdescription: myListing.data.description
+            agentdescription: agent.data.description
         }
     })
 
-    function onSubmit(data: ItemDescriptionInput) {
-        myListing.updateState({
-            description: data.itemdescription
+    function onSubmit(data: AgentDescriptionInput) {
+        agent.updateState({
+            description: data.agentdescription
         })
         onNext()
     }
@@ -47,7 +47,7 @@ function ItemDescription({
                 <form onSubmit={form.handleSubmit(onSubmit)}>
                     <FormField
                         control={form.control}
-                        name='itemdescription'
+                        name='agentdescription'
                         render={({ field}) => (
                             <FormItem>
                                 <FormControl>
@@ -69,4 +69,4 @@ function ItemDescription({
     )
 }
 
-export default ItemDescription
+export default AgentDescription
