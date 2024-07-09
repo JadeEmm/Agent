@@ -3,20 +3,20 @@
 import React, { useState } from 'react'
 import { Progress } from "@/components/ui/progress"
 import { Button } from '@/components/ui/button'
-import ItemName from './item-name'
-import ItemDescription from './item-description'
-import ItemPhotos from './item-photos'
-import { useMyListingStore } from '../my-listing-store'
+import { useMyAgentStore } from '../my-agent-store'
 import { useSession } from 'next-auth/react'
 import { toast } from 'sonner'
 import { Loader } from '@/components/loader'
+import AgentName from './agent-name'
+import AgentDescription from './agent-description'
+import AgentPhotos from './agent-photos'
 
 const totalSteps = 3
 const stepIncrement = 100 / totalSteps
 
-function ListYourItemComponent() {
+function ListYourAgentComponent() {
     const { data: session } = useSession()
-    const myListing = useMyListingStore()
+    const agent = useMyAgentStore()
     const [submitting, setSubmitting] = useState(false)
     const [step, setStep] = useState(1)
 
@@ -38,13 +38,13 @@ function ListYourItemComponent() {
 
         data.set('data', JSON.stringify(
             {
-                item: myListing.data
+                agent: agent.data
             }
         ))
 
         setSubmitting(true)
         const result = await
-            fetch(`api/host/${session?.user.id}/item/create`, {
+            fetch(`api/host/${session?.user.id}/agent/create`, {
                 method: 'POST',
                 body: data
             })
@@ -52,7 +52,7 @@ function ListYourItemComponent() {
         setSubmitting(false)
 
         if (result.ok) {
-            toast("Item created")
+            toast("Agent created")
         }
 
     }
@@ -66,10 +66,10 @@ function ListYourItemComponent() {
                 <Progress value={step * stepIncrement} />
 
                 {{
-                    1: <ItemName onNext={handleNextStepChange} />,
-                    2: <ItemDescription onNext={handleNextStepChange}
+                    1: <AgentName onNext={handleNextStepChange} />,
+                    2: <AgentDescription onNext={handleNextStepChange}
                         onPrev={handlePrevStepChange} />,
-                    3: <ItemPhotos onPrev={handlePrevStepChange} />
+                    3: <AgentPhotos onPrev={handlePrevStepChange} />
                 }[step]}
 
                 {
@@ -85,4 +85,4 @@ function ListYourItemComponent() {
     )
 }
 
-export default ListYourItemComponent
+export default ListYourAgentComponent

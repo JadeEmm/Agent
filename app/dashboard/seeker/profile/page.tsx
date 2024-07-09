@@ -10,7 +10,7 @@ import {
   } from "@/components/ui/dialog"
 import { Button } from '@/components/ui/button'
 import { Plus } from 'lucide-react'
-import { ItemModel } from '@/schemas/item'
+import { AgentModel } from '@/schemas/agent'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '../../../api/auth/[...nextauth]/route'
 import { redirect, useRouter } from 'next/navigation'
@@ -22,7 +22,7 @@ async function MainDashboardProfile() {
         redirect('/api/auth/signin')
     }
 
-    const myListings = await ItemModel.find({
+    const agents = await AgentModel.find({
         hostid: session?.user.id
     })
 

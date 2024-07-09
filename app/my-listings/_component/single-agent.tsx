@@ -1,6 +1,6 @@
 'use client'
 
-import { Item, ItemStatus } from '@/types'
+import { Agent, ItemStatus } from '@/types'
 import React, { useState } from 'react'
 import { Badge } from "@/components/ui/badge"
 import Link from 'next/link'
@@ -15,28 +15,27 @@ import {
     AlertDialogFooter,
     AlertDialogHeader,
     AlertDialogTitle,
-    AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 import Image from 'next/image'
 import { ImageIcon } from 'lucide-react'
 
-function SingleListing({
-    listings
-}: { listings: Item[] }) {
+function SingleAgent({
+    agents
+}: { agents: Agent[] }) {
 
-    const [itemToAction, setItemToAction] = useState<Item | null>(null)
+    const [agentToAction, setAgentToAction] = useState<Agent | null>(null)
     const [dialog, setDialog] = useState(false)
     const router = useRouter()
 
-    const handleItemRemove = (item: Item) => {
-        setItemToAction(item)
+    const handleAgentRemove = (agent: Agent) => {
+        setAgentToAction(agent)
         setDialog(true)
     }
 
     const handleConfirm = async () => {
-        const result = await fetch(`api/item/${itemToAction?._id}`, {
+        const result = await fetch(`api/agent/${agentToAction?._id}`, {
             method: 'DELETE'
         })
 
@@ -50,35 +49,35 @@ function SingleListing({
 
         <>
             {
-                listings.map((item) => (
-                    <div key={item._id} className="flex gap-4 py-1 pb-1 shadow-md">
+                agents.map((agent) => (
+                    <div key={agent._id} className="flex gap-4 py-1 pb-1 shadow-md">
 
                         {/* photo */}
                         <div>
                             {
-                                item.photos.length > 0 ?
+                                agent.photos.length > 0 ?
                                 <Image className='rounded-md' width={100} height={100}
-                                alt={item.name} src={`${item.photos.at(0)}`} />
+                                alt={agent.name} src={`${agent.photos.at(0)}`} />
                                 :
                                 <ImageIcon width={100} height={100} className='text-slate-200' />
                             }
                         </div>
                         <div className="flex flex-col justify-center spacey-y-1">
-                            <p className='text-2xl sm:text-xl font-bold capitalize'>{item.name}</p>
+                            <p className='text-2xl sm:text-xl font-bold capitalize'>{agent.name}</p>
                             <Badge
-                                className={`${item.status === ItemStatus.LISTED ?
+                                className={`${agent.status === ItemStatus.LISTED ?
                                     'bg-green-500' : 'bg-red-500'} text-white w-20 uppercase flex justify-center`}
-                            >{item.status}</Badge>
+                            >{agent.status}</Badge>
 
                             <div className="flex gap-4">
-                                <Link href={`my-listings/edit/${item._id}`}
+                                <Link href={`my-listings/edit/${agent._id}`}
                                     className={cn(buttonVariants({ variant: 'ghost' }), 'text-blue-500 px-1')}
                                 >
                                     Edit
                                 </Link>
                                 <Button
                                     variant="link"
-                                    onClick={() => handleItemRemove(item)}
+                                    onClick={() => handleAgentRemove(agent)}
                                     className={cn(buttonVariants({ variant: 'ghost' }), 'text-red-500 px-1')}
                                 >
                                     Remove
@@ -108,4 +107,4 @@ function SingleListing({
     )
 }
 
-export default SingleListing
+export default SingleAgent

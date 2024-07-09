@@ -1,15 +1,10 @@
 'use client'
 
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import * as z from 'zod'
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import { Textarea } from "@/components/ui/textarea"
 import { Button } from '@/components/ui/button'
 import ImageDropZone from '@/components/imageDropZone'
-import { useMyListingStore } from '../my-listing-store'
+import { useMyAgentStore } from '../my-agent-store'
 
-function ItemPhotos({
+function AgentPhotos({
     onNext,
     onPrev
 }: {
@@ -17,16 +12,15 @@ function ItemPhotos({
     onPrev: () => void
 }) {
 
-    const item = useMyListingStore()
+    const agent = useMyAgentStore()
 
     const handleFileAdd = async (filesToUpload: string[]) => {
-        console.log("Addeding now!")
-        item.updateState({ photos: [...item.data.photos ?? [], ...filesToUpload]})
+        agent.updateState({ photos: [...agent.data.photos ?? [], ...filesToUpload]})
     }
 
     const handleFileDelete = (url: string) => {
-        const updatedPhotos = item.data.photos?.filter(photo => photo !== url) ?? []
-        item.updateState({ photos: updatedPhotos })
+        const updatedPhotos = agent.data.photos?.filter(photo => photo !== url) ?? []
+        agent.updateState({ photos: updatedPhotos })
     }
 
     return (
@@ -43,4 +37,4 @@ function ItemPhotos({
     )
 }
 
-export default ItemPhotos
+export default AgentPhotos
