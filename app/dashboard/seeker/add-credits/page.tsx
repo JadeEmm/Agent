@@ -1,44 +1,41 @@
-'use client'
+import { stripe } from '@/lib/stripe'
+import React from 'react'
+import Stripe from 'stripe'
+import { Metadata } from '@stripe/stripe-js'
+import { CheckCircle2 } from 'lucide-react'
+import Link from 'next/link'
+import { headers } from 'next/headers'
+import { updateUserBalance } from '@/lib/mongodb'
 
-import React, { useState } from 'react'
-import { useRouter } from 'next/navigation'
+async function AddCreditsCheckoutPage({
+    searchParams
+}: {
+    searchParams: { session_id: string }
+}) {
+    if (!searchParams.session_id) {
+        throw new Error("Please provide a valid session id")
+    }
 
-function AddCreditsPage() {
-    const [amount, setAmount] = useState('')
-    const router = useRouter()
+    const checkoutSession: Stripe.Checkout.Session = 
+    await stripe.checkout.sessions.retrieve(searchParams.session_id, {
+        expand: ['line_items', 'payment_intent']
+    })
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault()
+    const paymentIntent = checkoutSession.payment_intent as Stripe.PaymentIntent
+    const paymentStatus = paymentIntent.status === 'succeeded' ? 'Payment successful' : 'Payment failed'
 
-        const formData = new FormData()
-        formData.append('seekerid', 'user-id-from-session') // Replace with actual user ID from session or context
-        formData.append('amount', amount)
-
-        await fetch('/api/create-checkout-session', {
-            method: 'POST',
-            body: formData
-        })
-
-        router.push('/seeker/dashboard')
+    if (paymentIntent.status === 'succeeded') {
+        const metadata = checkoutSession.metadata as Metadata
+        await updateUserBalance(metadata['seekerid'], parseFloat(metadata['amount']), parseInt(metadata['credits'])) 
     }
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen py-2">
-            <h1 className="text-4xl mb-4">Add Credits to Your Account</h1>
-            <form onSubmit={handleSubmit} className="flex flex-col items-center">
-                <input 
-                    type="number"
-                    value={amount}
-                    onChange={(e) => setAmount(e.target.value)}
-                    placeholder="Enter amount"
-                    className="mb-4 p-2 border rounded"
-                    required
-                />
-                <button type="submit" className="bg-blue-500 text-white p-2 rounded">Proceed to Payment</button>
-            </form>
+        <div className="flex flex-col justify-center items-center">
+            {paymentIntent.status === 'succeeded' && <CheckCircle2 size={64} className="text-green-500" />}
+            <h2 className={`${paymentIntent.status === 'succeeded' ? 'text-green-500' : 'text-red-500'} text-2xl py-4`}>{paymentStatus}</h2>
+            <h3 className="text-lg">Your payment has been processed and the credits will be reflected in your account. <Link href={'/dashboard/seeker'} className="text-blue-500">Return to Dashboard</Link></h3>
         </div>
     )
 }
 
-export default AddCreditsPage
-
+export default AddCreditsCheckoutPage

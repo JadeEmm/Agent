@@ -33,3 +33,23 @@ export const connectToDB = async () => {
         client = _client.connection.getClient()
     }
 }
+
+export const updateUserBalance = async (seekerid: string, amount: number, credits: number) => {
+    try {
+        const client = await clientPromise()
+        const database = client.db('test')
+        const collection = database.collection('seekerprofiles')
+
+        const filter = { _id: new Object(seekerid) }
+        const update = { $inc: { credits: credits } }
+
+        const result = await collection.updateOne(filter, update)
+        if (result.matchedCount === 0) {
+            throw new Error(`No document found with _id: ${seekerid}`)
+        }
+        console.log(`Successfully updated user balance for seekerid: ${seekerid}`)
+    } catch (error) {
+        console.error('Failed to update user balance:', error)
+        throw error
+    }
+}
