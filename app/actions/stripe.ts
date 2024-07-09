@@ -15,7 +15,7 @@ export async function createCheckoutSession(data: FormData): Promise<void> {
         mode: 'payment',
         submit_type: 'pay',
         metadata: {
-            seekerid: data.get('seekerid') as string,
+            userid: data.get('userid') as string,
             amount: amount.toString(),
             credits: credits.toString()
         },
@@ -32,9 +32,9 @@ export async function createCheckoutSession(data: FormData): Promise<void> {
             }
         ],
         success_url:
-        `${headers().get('origin')}/seeker/add-credits/checkout/result?session_id={CHECKOUT_SESSION_ID}`,
+        `${headers().get('origin')}/dashboard/seeker/add-credits/checkout/result?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${headers().get('origin')}`
     })
-
+    console.log(checkoutSession, "checkout-session")
     redirect(checkoutSession.url as string)
 }
