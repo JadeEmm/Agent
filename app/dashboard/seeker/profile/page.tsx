@@ -1,5 +1,4 @@
 
-
 import React from 'react'
 import {
     Dialog,
@@ -14,23 +13,23 @@ import { ItemModel } from '@/schemas/item'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '../../../api/auth/[...nextauth]/route'
 import { redirect, useRouter } from 'next/navigation'
+import { ProfileForm } from '@/components/profileForm'
+
 
 async function MainDashboardProfile() {
-    const session = await getServerSession(authOptions)
 
+    const session = await getServerSession(authOptions)
     if (!session) {
         redirect('/api/auth/signin')
     }
 
-    const myListings = await ItemModel.find({
-        hostid: session?.user.id
-    })
-
-
+    
+  
   return (
-    <>
-        <h1 className='text-2xl sm:text-4xl py-8 font-bold'>Seeker Profile Edit</h1>  
-    </>
+    <div className='flex flex-col p-4'>
+        <h1 className='text-2xl sm:text-4xl py-8 font-bold'>Profile</h1>
+        <ProfileForm />
+    </div>
   )
 }
 
