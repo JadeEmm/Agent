@@ -9,7 +9,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 
 async function AgentEditPage({
     params
-}: { params: { agentId: string}}) {
+}: { params: { agentid: string}}) {
     const session = await getServerSession(authOptions)
 
     if (!session) {
@@ -18,9 +18,7 @@ async function AgentEditPage({
 
     await connectToDB()
 
-    const agent = await AgentModel.find({
-        agentId: session?.user.id
-    })
+    const agent = await AgentModel.findById<Agent>(params.agentid) // the query param `agentid` is the object _id and not session.user.id/agentId
 
     return (
         <div>

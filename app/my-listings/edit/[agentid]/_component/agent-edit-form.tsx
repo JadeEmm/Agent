@@ -44,7 +44,8 @@ function AgentEditForm({
     async function onSubmit(formInput: FormInput) {
 
         const data = {
-            ...formInput
+            ...formInput,
+            agentId: agent?.agentId,
         }
 
         const result = await fetch(`/api/agent/${agent._id}`, {

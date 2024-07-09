@@ -53,19 +53,20 @@ export async function PATCH(
     const body = await req.json()
 
     const { 
+        agentId,
         agentName, 
         agentDescription,
         photos,
         status
          } = body;
 
-         console.log(params.agentid)
         const agent = await AgentModel.findById<Agent>(params.agentid)
 
         if (!agent) {
             return new NextResponse("agent not found", { status: 404 })
         }
 
+        agent.agentId = agentId
         agent.name = agentName
         agent.description = agentDescription        
         agent.photos = photos
