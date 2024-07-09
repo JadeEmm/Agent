@@ -30,7 +30,7 @@ export async function createCheckoutSession(data: FormData): Promise<void> {
                         name: data.get('item') as string
                     },
                     unit_amount: 
-                    formatAmountForStripe(Number(data.get('amount') as string), 'usd')
+                    formatAmountForStripe(Number(data.get('amouqnt') as string), 'usd')
                 },
             }
         ],
