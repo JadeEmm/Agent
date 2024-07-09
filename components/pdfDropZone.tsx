@@ -1,7 +1,7 @@
 
 'use client'
 
-import { UploadCloudIcon, X } from 'lucide-react'
+import { UploadCloudIcon, X, EyeIcon } from 'lucide-react'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { Button } from './ui/button'
@@ -9,6 +9,8 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { Loader } from './loader'
 import { storageRef } from '@/lib/firebase'
 import { deleteObject, getDownloadURL, uploadBytes } from 'firebase/storage'
+import Image from 'next/image'
+import Link from 'next/link'
 
 type UploadInterface = {
     file: File | null
@@ -162,30 +164,30 @@ function PdfDropZone({
 
 
                 {
-                    pdfStates.map((pdf, index) => (
+                    pdfStates.map((pdf, index) => {
+
+                        return (
                         <div key={index}
                             className='border-0 p-0 w-full relative shadow-md bg-slate-200 
-                rounded-md aspect-square h-full' style={{ height: '70px', overflow: 'hidden', maxWidth: '100%' }}>
+                rounded-md aspect-square h-full'>
                             {
                                 pdf.state === 'complete' ?
-                                    // <Image
-                                    //     fill
-                                    //     src={pdf.downloadURL}
-                                    //     alt={`listing pdfs ${index + 1}`}
-                                    //     sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-                                    //     className='h-full w-full rounded-md object-cover'
-                                    // />
-                                    <div className='flex items-center justify-between p-4'>
-                                        <div className='text-gray-700' >{pdf.filename}</div>
+                                <div className='flex items-center p-4'>
+                                        {/* <div className='text-gray-700' >{pdf.filename}</div> */}
+                                        <a href={pdf.downloadURL} target='_blank' rel="noopener noreferrer">
+                                            <Button variant='ghost'>
+                                                <EyeIcon className='w-4 h-4 text-blue-500' />
+                                            </Button>
+                                        </a>
                                         <Button variant='ghost' onClick={(e) => {
                                             e.stopPropagation()
                                             _handleDelete(pdf.downloadURL)
                                         }}>
-                                            <X className='w-4 h-4 text-red-500' />
+                                            <X className='w-4 h-4 text-blue-500' />
                                         </Button>
-                                    </div>
-                                    :
-                                    <Skeleton className='h-full wi-full' />
+                                </div>
+                                :
+                                <Skeleton className='h-full wi-full' />
                             }
 
                             {/* loader */}
@@ -209,14 +211,15 @@ function PdfDropZone({
                         -translate-x-2
                         translate-y-2
                         cursor-pointer items-center justify-center">
-                                    <X
+                                    {/* <X
                                         className='bg-red-500 text-white rounded-lg'
                                         width={16} height={16}
-                                    />
+                                    /> */}
                                 </div>
                             </div>
                         </div>
-                    ))
+                    ) } )
+    
                 }
             </div>
             {/* error */}

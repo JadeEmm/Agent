@@ -1,45 +1,28 @@
 "use client"
 
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm,  } from 'react-hook-form';
+import PdfDropZone from './pdfDropZone';
 
 
-export function ProfileForm() {
+export function ProfileForm({ user_id }: { user_id: string }) {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
-    // console.log(errors);
+    const [currentResumes, setCurrentResumes] = useState<string[]>([]);
+    
+    const onSubmit = async (data) => {
+      const response = await fetch(`/api/seekerprofile/${user_id}`, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      const body = await response.json()
+      console.log(body)
+    }
 
-    const myProfile = {
-        id: 1,
-        name: "John Doe",
-        photos: ["photo1.jpg", "photo2.jpg"],
-        description: "Experienced software developer",
-        workHistory: "Company A: 2015-2018, Company B: 2018-2021",
-        fullName: "Johnathan Doe",
-        address: "123 Main St, Springfield, IL",
-        phoneNumber: "1234567890",
-        emailAddress: "john.doe@example.com",
-        education: "B.S. in Computer Science",
-        relevantLinks: "https://www.linkedin.com/in/johndoe",
-        workAuthorization: true,
-        requiresSponsorship: false,
-        disability: false,
-        veteran: false,
-        ethnicity: "Caucasian",
-        gender: "Male",
-        resumeLink: "https://example.com/resume.pdf",
-        resumes: ["resume1.pdf", "resume2.pdf"],
-        numApps: 5,
-        numCredits: 120,
-        allAgents: [101, 102, 103],
-        activeAgent: 101,
-        preferredLocation: "San Francisco, CA",
-        preferredCompanySize: "Medium",
-        preferredIndustry: "Technology",
-        preferredSalary: "$100,000 - $120,000"
-    };
-
+    console.log("user_id: ", user_id);
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
@@ -250,7 +233,7 @@ export function ProfileForm() {
                 </div>
               </div>
     
-              <div className="sm:col-span-6">
+              {/* <div className="sm:col-span-6">
                 <label htmlFor="resumeLink" className="block text-sm font-medium leading-6 text-gray-900">Resume Link</label>
                 <div className="mt-2">
                   <input
@@ -260,9 +243,9 @@ export function ProfileForm() {
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
-              </div>
+              </div> */}
     
-              <div className="sm:col-span-6">
+              {/* <div className="sm:col-span-6">
                 <label htmlFor="resumes" className="block text-sm font-medium leading-6 text-gray-900">Resumes</label>
                 <div className="mt-2">
                   <input
@@ -274,8 +257,14 @@ export function ProfileForm() {
                   />
                   {errors.resumes && <span className="text-red-600 text-sm">At least one resume is required</span>}
                 </div>
-              </div>
+              </div> */}
     
+              <PdfDropZone 
+                onFilesAdded={async (urls) => setCurrentResumes(urls)}
+                onFileDelete={async (url) => setCurrentResumes(currentResumes.filter(resume => resume !== url))}
+                pdfs = {currentResumes}
+              />
+
               <div className="sm:col-span-6">
                 <label htmlFor="preferredLocation" className="block text-sm font-medium leading-6 text-gray-900">Preferred Location</label>
                 <div className="mt-2">

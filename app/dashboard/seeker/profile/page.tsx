@@ -28,7 +28,7 @@ async function MainDashboardProfile() {
   return (
     <div className='flex flex-col p-4'>
         <h1 className='text-2xl sm:text-4xl py-8 font-bold'>Profile</h1>
-        <ProfileForm />
+        <ProfileForm user_id={session.user.id} />
     </div>
   )
 }
