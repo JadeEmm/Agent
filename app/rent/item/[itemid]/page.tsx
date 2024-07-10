@@ -1,5 +1,5 @@
 import { connectToDB } from '@/lib/mongodb'
-import { ItemModel } from '@/schemas/item'
+import { ItemModel } from '@/schemas/agent'
 import { UserModel } from '@/schemas/user'
 import { Booking, BookingStatus, Item, User } from '@/types'
 import React from 'react'

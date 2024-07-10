@@ -15,15 +15,12 @@ export interface JobApplication extends Document {
     resumeUsed: string,
 }
 
-export interface Item extends Document {
+export interface Agent extends Document {
+    agentId: string // the session.user.id of the agent creating their profile
     name: string,
-    hostid?: string,
-    price: Price,
     photos: string[],
     description: string,
     status: string,
-    category: string,
-    numberOfBookings?: number
 }
 
 export interface SeekerProfile extends Document {
