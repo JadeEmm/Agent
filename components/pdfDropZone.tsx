@@ -140,18 +140,12 @@ function PdfDropZone({
     return (
         <>
             {/* upload box */}
-            <div className='grid 
-        gap-2
-        grid-cols-[repeat(1,1fr)]
-        sm:grid-cols-[repeat(2,1fr)]
-        lg:grid-cols-[repeat(3,1fr)]
-        xl:grid-cols-[repeat(4,1fr)]
-        '>
+            <div className='flex flex-col w-full'>
                 <div {...getRootProps()}
                     className='text-center p-2 cursor-pointer border-2 border-dashed border-slate-200'>
                     <input {...getInputProps()} />
                     <div className='flex flex-col items-center justify-center 
-                text-xs text-gray-400' style={{ height: '50px', overflow: 'hidden', maxWidth: '100%' }}>>
+                text-xs text-gray-400 h-full'>
                         <UploadCloudIcon className='mb-4 w-8 h-8' />
                         <div className="text-gray-400">drag &amp; drop to upload</div>
                         <div className="mt-2">
@@ -169,22 +163,23 @@ function PdfDropZone({
                         return (
                         <div key={index}
                             className='border-0 p-0 w-full relative shadow-md bg-slate-200 
-                rounded-md aspect-square h-full'>
+                rounded-md aspect-square h-16 my-2'>
                             {
                                 pdf.state === 'complete' ?
                                 <div className='flex items-center p-4'>
-                                        {/* <div className='text-gray-700' >{pdf.filename}</div> */}
-                                        <a href={pdf.downloadURL} target='_blank' rel="noopener noreferrer">
-                                            <Button variant='ghost'>
+                                            <Button variant='ghost' onClick={(e) => {
+                                                e.preventDefault();
+                                                window.open(pdf.downloadURL, '_blank');
+                                            }}>
                                                 <EyeIcon className='w-4 h-4 text-blue-500' />
                                             </Button>
-                                        </a>
                                         <Button variant='ghost' onClick={(e) => {
                                             e.stopPropagation()
                                             _handleDelete(pdf.downloadURL)
                                         }}>
                                             <X className='w-4 h-4 text-blue-500' />
                                         </Button>
+                                        <div className='text-gray-700' >{pdf.filename || pdf.file?.name}</div>
                                 </div>
                                 :
                                 <Skeleton className='h-full wi-full' />
@@ -193,30 +188,11 @@ function PdfDropZone({
                             {/* loader */}
                             {
                                 uploading && pdf.state === 'pending' &&
-                                <div className="absolute top-0 left-0 flex h-full w-full items-center
+                                <div className="absolute top-0 left-0 flex w-full items-center
                             justify-center rounded-md bg-black bg-opacity-70">
                                     <Loader />
                                 </div>
                             }
-
-                            {/* delete button */}
-                            <div
-                                className="group absolute right-0 top-0"
-                                onClick={(e) => {
-                                    e.stopPropagation()
-                                    _handleDelete(pdf.downloadURL)
-                                }}
-                            >
-                                <div className="flex h-4 w-4 
-                        -translate-x-2
-                        translate-y-2
-                        cursor-pointer items-center justify-center">
-                                    {/* <X
-                                        className='bg-red-500 text-white rounded-lg'
-                                        width={16} height={16}
-                                    /> */}
-                                </div>
-                            </div>
                         </div>
                     ) } )
     
