@@ -53,6 +53,25 @@ export interface SeekerProfile extends Document {
     preferredSalary: String
 }
 
+export enum Tier {
+    One = "one",
+    Two = "two"
+}
+
+export enum Status {
+    Pending = "pending",
+    InProgress = "in-progress",
+    Complete = "complete"
+}
+
+export interface Order extends Document {
+    seekerId?: string,
+    agentId?: string,
+    tier: Tier,
+    numApps: Number,
+    status: Status,
+}
+
 export interface Booking extends Document {
     itemid?: string,
     guestid?: string,

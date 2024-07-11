@@ -1,6 +1,6 @@
-seeker table
+seeker collection
 
-- id (primary key): String
+- \_id (primary key): String
 - name: String,
 - photos: [String],
 - description: String,
@@ -28,37 +28,50 @@ seeker table
 - preferredIndustry: String,
 - preferredSalary: String
 
-agent table
+agent collection
 
-- id (primary key): String
+- \_id (primary key): String
 - email: String
 - phoneNumer: String
 - name: String,
 - photos: [String],
 - description: String
-- allSeekers (foreign keys): [String]
+- allSeekers (foorders collection
+- \_id (primary key): int
+- reign keys): [String]
 - activeSeekers (foreign keys): [String]
 - specializations: [String]
 
-applications table
+applications collection
 
-- id (primary key): String
+- \_id (primary key): String
 - seeker id (foreign key): String
 - agent id (foreign key); String
 - jobTitle: String
 - companyName: String
 - postingLink: String
-- dateSubmitted: String
+- dateSubmitted: Stringorders collection
+- \_id (primary key): int
+-
 - postingDate: String
 - jobLocation: String
 - loginInfo: String
 - notes: String
 - resumeUsed: String. Null if not tailored.
 
-transactions table
+transactions collection
 
-- id (primary key): int
+- \_id (primary key): int
 - seeker id (foreign key): String
 - agent id (foreign key); String
 - date: String
 - amount: int
+
+orders collection
+
+- \_id (primary key): int
+- seekerId?: string,
+- agentId?: string,
+- tier: enum("one", "two"),
+- numApps: Number,
+- status: enum("pending", "in-progress", "complete"),
