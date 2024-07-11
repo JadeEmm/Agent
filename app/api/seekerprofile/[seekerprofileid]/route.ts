@@ -42,52 +42,54 @@ export async function DELETE(
 
 }
 
-// patch
-// // export async function PATCH(
-// //     req: Request,
-// //     { params } : { params: { seekerprofileid: string }}
-// // ) {
+// POST
+// TO CREATE A NEW SEEKER PROFILE OR EDIT AN EXISTING ONE
+export async function POST(req: Request, { params } : { params: { seekerprofileid: string }}) {
+    
+    try {
 
-// //     try {
-// //     await connectToDB()
+        const hostid  = params.seekerprofileid // hostid is the user id of the user who is creating the seeker profile
+        const body = await req.json()
 
-// //     const body = await req.json()
+        if (!hostid) {
+            return new NextResponse('Host not found', { status: 404 })
+        }
 
-// //     const { 
-// //         itemname, 
-// //         itemcategory,
-// //         itemdescription,
-// //         hourly,
-// //         daily,
-// //         photos,
-// //         status
-// //          } = body;
+        await connectToDB()
 
-// //          console.log(params.itemid)
-// //         const item = await ItemModel.findById<Item>(params.itemid)
+        // Check if existing profile based on hostid
+        const existingSeekerProfile = await SeekerProfileModel.findOne({ hostid });
 
-// //         if (!item) {
-// //             return new NextResponse("item not found", { status: 404 })
-// //         }
+        let seekerProfile;
 
-// //         item.name = itemname
-// //         item.description = itemdescription
-// //         item.category = itemcategory
-// //         item.price = {
-// //             hourly: hourly,
-// //             daily: daily
-// //         }
-// //         item.photos = photos
-// //         item.status = status ? ItemStatus.LISTED : ItemStatus.UNLISTED
+        if (existingSeekerProfile) {
+            // Update existing profile
+            console.log('Updating existing seeker profile')
+            seekerProfile = await SeekerProfileModel.findOneAndUpdate(
+                { hostid }, 
+                { ...body }, 
+                { new: true }
+            );
+        } else {
+            // Create new profile
+            console.log('Creating new seeker profile')
+            seekerProfile = await SeekerProfileModel.create({
+                ...body, 
+                hostid, 
+                numApps: 0,
+                numCredits: 0,
+                allAgentsNumber: 0 
+            });
+        };
 
-// //         await item.save()
 
-// //         return NextResponse.json({
-// //             message: "Item updated"
-// //         })
-// //     } catch(error) {
-// //         console.log(error)
-// //         return new NextResponse("Server error", { status: 500})
-// //     }
+        return NextResponse.json({
+            message: existingSeekerProfile ? "Profile updated!" : "Profile created!",
+            newSeeker: seekerProfile
+        })
 
-// }
+    } catch(error) {
+        console.log(error)
+        return new NextResponse("Server error", { status: 500})
+    }
+}
