@@ -23,7 +23,7 @@ export async function POST(
 
         await connectToDB()
 
-        const savedAgentProfile = await AgentModel.create({
+        const savedAgentProfile = await AgentModel.create({ // orders null be default
             agentId: agentId,
             name: agent.name,
             description: agent.description,

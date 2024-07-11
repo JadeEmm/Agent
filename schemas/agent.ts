@@ -10,8 +10,15 @@ const AgentSchema = new Schema<Agent>({
         type: String,
         default: ItemStatus.LISTED
     },
+    orders: [
+        {
+            type: mongoose.Types.ObjectId,
+            ref: 'orders',
+            default: null,
+        },
+    ],
 }, {
-    timestamps: true
+    timestamps: true,
 })
 
 
