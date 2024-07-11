@@ -57,8 +57,9 @@ export async function PATCH(
         agentName, 
         agentDescription,
         photos,
-        status
-         } = body;
+        status,
+        orders
+        } = body;
 
         const agent = await AgentModel.findById<Agent>(params.agentid)
 
@@ -71,6 +72,7 @@ export async function PATCH(
         agent.description = agentDescription        
         agent.photos = photos
         agent.status = status ? ItemStatus.LISTED : ItemStatus.UNLISTED
+        agent.orders = orders
 
         await agent.save()
 
