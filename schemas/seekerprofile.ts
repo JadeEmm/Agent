@@ -32,7 +32,14 @@ const SeekerProfileSchema = new Schema<SeekerProfile>({
     preferredLocation: String,
     preferredCompanySize: String,
     preferredIndustry: String,
-    preferredSalary: String
+    preferredSalary: String,
+    orders: [
+        {
+            type: mongoose.Types.ObjectId,
+            ref: 'orders',
+            default: null,
+        },
+    ],
 }, {
     timestamps: true
 })

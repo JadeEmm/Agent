@@ -27,6 +27,7 @@ seeker collection
 - preferredCompanySize: String,
 - preferredIndustry: String,
 - preferredSalary: String
+- orders (foreign keys): [string]
 
 agent collection
 
@@ -41,6 +42,7 @@ agent collection
 - reign keys): [String]
 - activeSeekers (foreign keys): [String]
 - specializations: [String]
+- orders (foreign keys): [string]
 
 applications collection
 

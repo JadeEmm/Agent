@@ -21,6 +21,7 @@ export interface Agent extends Document {
     photos: string[],
     description: string,
     status: string,
+    orders: string[],
 }
 
 export interface SeekerProfile extends Document {
@@ -50,7 +51,8 @@ export interface SeekerProfile extends Document {
     preferredLocation: String,
     preferredCompanySize: String,
     preferredIndustry: String,
-    preferredSalary: String
+    preferredSalary: String,
+    orders: string[]
 }
 
 export enum Tier {
