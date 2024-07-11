@@ -3,8 +3,8 @@ import mongoose, { Schema, model, models } from "mongoose";
 
 const JobApplicationSchema = new Schema<JobApplication>({
     jobid: String,
-    seekerid: { type: mongoose.Types.ObjectId, ref: 'User', default: null },
-    agentid: { type: mongoose.Types.ObjectId, ref: 'User', default: null },
+    seekerid: { type: mongoose.Types.ObjectId, ref: 'seekerprofiles', default: null },
+    agentid: { type: mongoose.Types.ObjectId, ref: 'agents', default: null },
     dateSubmitted: { type: Date, default: Date.now },
     postingDate: Date,
     companyName: String,
