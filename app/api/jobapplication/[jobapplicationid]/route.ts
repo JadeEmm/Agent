@@ -6,13 +6,13 @@ import { NextResponse } from "next/server";
 // delete
 export async function DELETE(
     req: Request,
-    { params }: { params: { jobApplicationId: string }}
+    { params }: { params: { jobapplicationid: string }}
 ) {
 
     try {
         await connectToDB()
 
-        const jobApplicationId = params.jobApplicationId
+        const jobApplicationId = params.jobapplicationid
     
         let deleteResult = await JobApplicationModel.findByIdAndDelete(jobApplicationId)
     
@@ -32,7 +32,7 @@ export async function DELETE(
 // patch
 export async function PATCH(
     req: Request,
-    { params } : { params: { jobApplicationId: string }}
+    { params } : { params: { jobapplicationid: string }}
 ) {
 
     try {
@@ -54,7 +54,7 @@ export async function PATCH(
             resumeUsed
             } = body;
 
-        const jobApplication = await JobApplicationModel.findById<JobApplication>(params.jobApplicationId)
+        const jobApplication = await JobApplicationModel.findById<JobApplication>(params.jobapplicationid)
 
         if (!jobApplication) {
             return new NextResponse("job application not found", { status: 404 })
@@ -79,7 +79,7 @@ export async function PATCH(
         })
     } catch(error) {
         console.log(error)
-        return new NextResponse("Server errorL " + error, { status: 500})
+        return new NextResponse("Server error: " + error, { status: 500})
     }
 
 }
