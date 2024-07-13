@@ -49,8 +49,8 @@ const ServicesPricing: React.FC = () => {
             </div>
           </div>
 
-          <div className="mt-8 mb-16">
-            <h2 className="text-4xl sm:text-3xl font-bold theme-text mb-4">Get more interviews with early applications</h2>
+          <div className="mt-10 mb-16">
+          <h2 className="text-4xl sm:text-3xl font-bold theme-text mt-16 mb-8">Get more interviews with early applications</h2>
             <h3 className="text-xl mb-8"> Studies show the sooner you apply to a job after it's been posted, the better your chances of landing an interview </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="card p-6 rounded-lg shadow-lg">
@@ -67,7 +67,8 @@ const ServicesPricing: React.FC = () => {
           </div>
 
           <div className="mt-16 mb-16">
-            <h2 className="text-4xl sm:text-5xl font-bold theme-text mb-4">How It Works</h2>
+            
+            <h2 className="text-4xl sm:text-5xl font-bold theme-text mb-8">How It Works</h2>
             <div className="grid grid-cols-3 gap-8">
               <div className="step-card p-6 rounded-lg shadow-lg">
                 <h3 className="text-3xl font-bold mb-4">Step 1</h3>
@@ -96,6 +97,17 @@ const ServicesPricing: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <footer className="footer-banner">
+        <div className="container mx-auto flex items-center justify-between p-4">
+          <Link href="/" passHref>
+            
+            <img src='logo.png' alt='logo' className="logo" />
+            
+          </Link>
+          <div className="copyright">&copy; ALL OF THE RIGHTS RESERVED</div>
+        </div>
+      </footer>
     </div>
   );
 };

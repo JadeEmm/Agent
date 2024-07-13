@@ -188,3 +188,25 @@
 .header-banner .logo {
   height: 50px; /* Adjust the height to fit your logo */
 }
+
+.footer-banner {
+  width: 100%;
+  background-color: #E5E7EB;
+
+}
+
+.footer-banner .container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.footer-banner .logo {
+  height: 50px; /* Adjust the height to fit your logo */
+}
+
+.copyright {
+  text-align: right;
+  margin-top: 0rem;
+  color: #fff
+}
