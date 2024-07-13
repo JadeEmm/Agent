@@ -1,20 +1,25 @@
 import React from 'react';
 import './BecomeAnAgent.css';
 import agentLogo from '/logo.png';
+import Link from 'next/link';
 
 const BecomeAnAgent: React.FC = () => {
   return (
     <div>
       <header className="header-banner">
         <div className="container mx-auto flex items-center justify-between p-4">
-          <img src='logo.png' alt='logo' className="logo" />
+          <Link href="/" passHref>
+            <div className="logo-container">
+            <img src='logo.png' alt='logo' className="logo" />
+            </div>
+          </Link>
         </div>
       </header>
 
       <section className="py-16 container-fluid text-black bg-white">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <div className="mb-16">
-            <h2 className="text-4xl sm:text-5xl font-bold theme-text mb-4">Join Us as an Agent</h2>
+            <h2 className="text-4xl sm:text-5xl font-bold theme-text mb-4">Become an Agent</h2>
             <p className="text-xl mb-4">
               Become a key player in connecting job seekers with their dream jobs.
             </p>
@@ -92,7 +97,20 @@ const BecomeAnAgent: React.FC = () => {
             <button className="bg-blue-800 text-white py-3 px-6 rounded-md font-bold text-2xl hover:bg-blue-600 transition duration-300">Get Started as An Agent</button>
           </div>
         </div>
+        
       </section>
+
+
+      <footer className="header-banner">
+        <div className="container mx-auto flex items-center justify-center p-4">
+          <Link href="/" passHref>
+            <div className="logo-container">
+            <img src='logo.png' alt='logo' className="logo" />
+            </div>
+          </Link>
+          <div className="copyright">&copy; ALL OF THE RIGHTS RESERVED</div>
+        </div>
+      </footer>
     </div>
   );
 };

@@ -10,7 +10,7 @@
 }
 
 .theme-text {
-  color: #474af0;
+  color: #1a237e;
 }
 
 .card-img-top {
@@ -37,7 +37,7 @@
   position: absolute;
   left: -100%;
   top: 0%;
-  background: #474af0;
+  background: #1a237e;
   width: 100%;
   height: 100%;
   transition: 0.5s;
@@ -57,7 +57,7 @@
 }
 
 .bg-blue-800 {
-  background-color: #474af0;
+  background-color: #1a237e;
 }
 
 .text-white {
@@ -172,8 +172,9 @@
 }
 
 .header-banner {
-  background-color: #474af0;
+  background-color: #1a237e;
   width: 100%;
+  padding: 1rem 0
 }
 
 .header-banner .container {
@@ -185,3 +186,19 @@
 .header-banner .logo {
   height: 50px; /* Adjust the height to fit your logo */
 }
+
+.footer-banner {
+  width: 100%;
+  background-color: #1a237e;
+  padding: 1rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.copyright {
+  text-align: right;
+  margin-top: 0rem;
+  color: #fff
+}
+

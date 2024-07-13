@@ -1,51 +1,86 @@
 import React from 'react';
+import Link from 'next/link';
 import './ContactUs.css';
+import agentLogo from '/logo.png'; // Replace with the actual path to your logo image
 
 const ContactUs: React.FC = () => {
   return (
-    <div>
+    <div className="contact-us-page">
       <header className="header-banner">
         <div className="container mx-auto flex items-center justify-between p-4">
-          <img src='/logo.png' alt='logo' className="logo" />
+          <Link href="/" passHref>
+            <div className="logo-container">
+            <img src='logo.png' alt='logo' className="logo" />
+            </div>
+          </Link>
         </div>
       </header>
 
-      <section className="py-16 container-fluid text-white">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <div className="mb-16">
-            <h2 className="text-4xl sm:text-5xl font-bold theme-text mb-4">Contact Us</h2>
-            <p className="text-xl">We'd love to hear from you. Please fill out the form below or reach out to us directly via the contact information provided.</p>
-          </div>
+      <section id="contact" className="container text-dark">
+        <h1 className="section-header">Contact Us</h1>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="card p-6 rounded-lg shadow-lg">
-              <h3 className="text-2xl font-bold mb-4">Contact Information</h3>
-              <p className="mb-4">Feel free to get in touch with us via the following contact details:</p>
-              <p><strong>Email:</strong> contact@company.com</p>
-              <p><strong>Phone:</strong> (123) 456-7890</p>
-              <p><strong>Address:</strong> 1234 Street Name, City, State, ZIP</p>
+        <div className="contact-wrapper">
+          {/* Left contact page */}
+          <form id="contact-form" className="form-horizontal" role="form">
+            <div className="form-group">
+              <div className="col-sm-12">
+                <input type="text" className="form-control" id="name" placeholder="NAME" name="name" required />
+              </div>
             </div>
-            <div className="card p-6 rounded-lg shadow-lg">
-              <h3 className="text-2xl font-bold mb-4">Contact Form</h3>
-              <form>
-                <div className="mb-4">
-                  <label htmlFor="name" className="block text-lg mb-2">Name</label>
-                  <input type="text" id="name" className="w-full p-2 border rounded-md" placeholder="Your Name" />
-                </div>
-                <div className="mb-4">
-                  <label htmlFor="email" className="block text-lg mb-2">Email</label>
-                  <input type="email" id="email" className="w-full p-2 border rounded-md" placeholder="Your Email" />
-                </div>
-                <div className="mb-4">
-                  <label htmlFor="message" className="block text-lg mb-2">Message</label>
-                  <textarea id="message" className="w-full p-2 border rounded-md" placeholder="Your Message" rows={5}></textarea>
-                </div>
-                <button type="submit" className="bg-blue-800 text-white py-3 px-6 rounded-md font-bold text-xl hover:bg-blue-600 transition duration-300">Submit</button>
-              </form>
+
+            <div className="form-group">
+              <div className="col-sm-12">
+                <input type="email" className="form-control" id="email" placeholder="EMAIL" name="email" required />
+              </div>
             </div>
+
+            <textarea className="form-control" rows={10} placeholder="MESSAGE" name="message" required></textarea>
+
+            <button className="btn btn-primary send-button" id="submit" type="submit">
+              <div className="alt-send-button">
+                <i className="fa fa-paper-plane"></i><span className="send-text">SEND</span>
+              </div>
+            </button>
+          </form>
+
+          {/* Right contact page */}
+          <div className="direct-contact-container">
+            <ul className="contact-list">
+              <li className="list-item"><i className="fa fa-map-marker fa-2x"><span className="contact-text place">City, State</span></i></li>
+              <li className="list-item"><i className="fa fa-phone fa-2x"><span className="contact-text phone"><a href="tel:1-212-555-5555" title="Give me a call">(212) 555-2368</a></span></i></li>
+              <li className="list-item"><i className="fa fa-envelope fa-2x"><span className="contact-text gmail"><a href="mailto:#" title="Send me an email">hitmeup@gmail.com</a></span></i></li>
+            </ul>
+
+            <hr />
+            <ul className="social-media-list">
+              <li><a href="#" target="_blank" className="contact-icon">
+                <i className="fa fa-github" aria-hidden="true"></i></a>
+              </li>
+              <li><a href="#" target="_blank" className="contact-icon">
+                <i className="fa fa-codepen" aria-hidden="true"></i></a>
+              </li>
+              <li><a href="#" target="_blank" className="contact-icon">
+                <i className="fa fa-twitter" aria-hidden="true"></i></a>
+              </li>
+              <li><a href="#" target="_blank" className="contact-icon">
+                <i className="fa fa-instagram" aria-hidden="true"></i></a>
+              </li>
+            </ul>
+            <hr />
           </div>
         </div>
       </section>
+
+      <footer className="footer-banner">
+        <div className="container mx-auto flex items-center justify-center p-4">
+          <Link href="/" passHref>
+            <div className="logo-container">
+            <img src='logo.png' alt='logo' className="logo" />
+            </div>
+          </Link>
+          <div className="copyright">&copy; ALL OF THE RIGHTS RESERVED</div>
+        </div>
+      </footer>
     </div>
   );
 };

@@ -23,7 +23,7 @@ export default function Home() {
       <MaxWContainer>
 
         {/* What is Agent? */}
-        <section className="py-8 sm:py-16 bg-blue-800 text-white">
+        <section className="py-8 sm:py-16 bg-primary text-white">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl sm:text-4xl font-bold mb-8">What is Agent?</h2>
             <p className="text-xl font-bold mb-8">
