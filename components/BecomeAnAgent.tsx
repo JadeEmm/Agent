@@ -1,6 +1,6 @@
 import React from 'react';
 import './BecomeAnAgent.css';
-import agentLogo from '/logo.png'; // Make sure to replace with the actual path to your logo image
+import agentLogo from '/logo.png';
 
 const BecomeAnAgent: React.FC = () => {
   return (

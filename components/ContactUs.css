@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
+}
+
+.header-banner {
+  background-color: #474af0;
+  padding: 1rem 0;
+}
+
+.logo {
+  height: 40px;
+}
+
+.container-fluid {
+  background-color: #474af0;
+  padding: 2rem;
+}
+
+.theme-text {
+  color: #ffffff;
+}
+
+.card {
+  background-color: #ffffff;
+  color: #000000;
+  z-index: 1;
+  overflow: hidden;
+  transition: 0.5s;
+  position: relative;
+}
+
+.card:hover {
+  color: white;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  left: -100%;
+  top: 0;
+  background: #474af0;
+  width: 100%;
+  height: 100%;
+  transition: 0.5s;
+  z-index: -1;
+}
+
+.card:hover::before {
+  left: 0%;
+  color: white;
+}
+
+.bg-blue-800 {
+  background-color: #2a3eb1;
+}
+
+.hover\:bg-blue-600:hover {
+  background-color: #1e299b;
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+.rounded-md {
+  border-radius: 0.375rem;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+}
+
+.transition {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+}
+
+.duration-300 {
+  transition-duration: 300ms;
+}
+
+input,
+textarea {
+  background-color: #f5f5f5;
+  border: 1px solid #d1d5db;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #2a3eb1;
+  box-shadow: 0 0 0 1px #2a3eb1;
+}

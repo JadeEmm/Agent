@@ -88,7 +88,7 @@ const ServicesPricing: React.FC = () => {
             <p className="text-lg mb-4">
               Not sure which plan is right for you? Contact us for more information and we'll help you choose the best option.
             </p>
-            <Link href="/contact">
+            <Link href="/contact-us">
               <button className="bg-blue-800 text-white py-3 px-6 rounded-md font-bold text-xl hover:bg-blue-600 transition duration-300">
                 Contact Us
               </button>
