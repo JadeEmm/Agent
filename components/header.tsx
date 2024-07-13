@@ -19,7 +19,7 @@ async function Header() {
             <nav className="bg-primary flex item-center justify-between p-4 lg:px-8">
                 {/* logo */}
                 <div className="flex lg:flex-1">
-                    <Link href="/page">
+                    <Link href="/">
                         
                             <span className='sr-only'>Logo</span>
                             <Image

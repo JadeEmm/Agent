@@ -1,16 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './BecomeAnAgent.css';
 import agentLogo from '/logo.png';
 import Link from 'next/link';
 
+const faqs = [
+  {
+    question: 'What is the commission rate?',
+    answer: 'Our platform charges a 19% commission on each order (that is less than other hire-based platforms). This helps us maintain and improve the platform, providing the support, tools and experience to help you.',
+  },
+  {
+    question: 'How do I get paid?',
+    answer: 'You get paid directly to your bank account through our secure payment system once the client confirms the job is completed to their satisfaction.',
+  },
+  // Add more FAQs as needed
+];
+
 const BecomeAnAgent: React.FC = () => {
+  const [expanded, setExpanded] = useState<number | null>(null);
+
+  const toggleFAQ = (index: number) => {
+    setExpanded(expanded === index ? null : index);
+  };
+
   return (
     <div>
       <header className="header-banner">
         <div className="container mx-auto flex items-center justify-between p-4">
           <Link href="/" passHref>
             <div className="logo-container">
-            <img src='logo.png' alt='logo' className="logo" />
+              <img src='logo.png' alt='logo' className="logo" />
             </div>
           </Link>
         </div>
@@ -19,12 +37,12 @@ const BecomeAnAgent: React.FC = () => {
       <section className="py-16 container-fluid text-black bg-white">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <div className="mb-16">
-            <h2 className="text-4xl sm:text-5xl font-bold theme-text mb-4">Become an Agent</h2>
+            <h2 className="text-4xl sm:text-5xl font-bold theme-text mb-4">Join Us as an Agent</h2>
             <p className="text-xl mb-4">
               Become a key player in connecting job seekers with their dream jobs.
             </p>
             <p className="text-xl">
-              Search and Apply to jobs on behalf of job seekers and earn competitive compensation.
+              Search and apply to jobs on behalf of job seekers and earn competitive compensation.
             </p>
           </div>
 
@@ -87,25 +105,44 @@ const BecomeAnAgent: React.FC = () => {
             </div>
           </div>
 
+          <div className="mt-16">
+            <h3 className="text-3xl sm:text-4xl font-bold theme-text mb-8">Frequently Asked Questions</h3>
+            {faqs.map((faq, index) => (
+              <div key={index} className="faq-item mb-4">
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="faq-question-button"
+                >
+                  {faq.question}
+                </button>
+                {expanded === index && (
+                  <div className="faq-answer">
+                    {faq.answer}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
           <div className="mt-16 text-center">
             <p className="text-lg mb-4">
               Ready to leverage your expertise and our platform to accelerate your earnings? Join us today and become a pivotal part of our mission to transform job searches.
             </p>
-            <p className="text-2xl mb-8">
+            <p className="text-2xl mb-16 mt-16">
               Click below to create your Agent profile and start maximizing your earnings with us.
             </p>
-            <button className="bg-blue-800 text-white py-3 px-6 rounded-md font-bold text-2xl hover:bg-blue-600 transition duration-300">Get Started as An Agent</button>
+            <Link href="/register">
+              <button className="bg-blue-800 text-white py-3 px-6 rounded-md font-bold text-2xl hover:bg-blue-600 transition duration-300"> Get Started as An Agent</button>
+            </Link>
           </div>
         </div>
-        
       </section>
-
 
       <footer className="header-banner">
         <div className="container mx-auto flex items-center justify-center p-4">
           <Link href="/" passHref>
             <div className="logo-container">
-            <img src='logo.png' alt='logo' className="logo" />
+              <img src='logo.png' alt='logo' className="logo" />
             </div>
           </Link>
           <div className="copyright">&copy; ALL OF THE RIGHTS RESERVED</div>

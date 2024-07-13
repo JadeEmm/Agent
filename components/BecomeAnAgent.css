@@ -202,3 +202,26 @@
   color: #fff
 }
 
+/* FAQ question button styles */
+.faq-question-button {
+  width: 100%;
+  text-align: left;
+  padding: 16px;
+  background-color: #f3f3f3;
+  border: none;
+  outline: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.faq-question-button:hover {
+  background-color: #e2e2e2;
+}
+
+.faq-answer {
+  padding: 16px;
+  background-color: #ffffff;
+  border-top: 1px solid #cccccc;
+  font-weight: normal; /* Ensures the text is not bold */
+}
