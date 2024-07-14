@@ -21,14 +21,13 @@ const KeyMetric: React.FC<KeyMetricProps> = ({ value, caption }) => {
 const KeyMetrics: React.FC = () => {
   const metrics = [
     { value: "1+", caption: "Hired Agents" },
-    { value: "50+", caption: "Applications Submitted" },
-    { value: "1st", caption: "Be One of the First Submissions With Fast Track" },
+    { value: "50+", caption: "Applications Submitted" }
   ];
 
   return (
     <section className="py-12 bg-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
           {metrics.map((metric, index) => (
             <KeyMetric key={index} value={metric.value} caption={metric.caption} />
           ))}

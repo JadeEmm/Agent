@@ -19,7 +19,7 @@ const ServicesPricing: React.FC = () => {
           <div className="mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold theme-text mb-4">Our Pricing Plans</h2>
             <p className="text-xl mb-8">
-              Choose the plan that best fits your needs that your agent will do for you.
+              Choose the plan that best fits your needs that your agent will do for you .
             </p>
           </div>
 
@@ -49,7 +49,23 @@ const ServicesPricing: React.FC = () => {
             
             </div>
           </div>
- 
+
+          <div className="mt-10 mb-16">
+          <h2 className="text-4xl sm:text-3xl font-bold theme-text mt-16 mb-8">Get more interviews with early applications</h2>
+            <h3 className="text-xl mb-8"> Studies show the sooner you apply to a job after it's been posted, the better your chances of landing an interview </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="card p-6 rounded-lg shadow-lg">
+                <h3 className="text-3xl font-bold mb-4">Fast Track Add-On</h3>
+                <p className="text-2xl mb-4">10 Credits per Order</p>
+                <p className="text-xl mb-4">Add to any plan for:</p>
+                <p className="text-left mb-4">Faster application processing.</p>
+                <p className="text-left mb-4">Rapid application submission</p>
+                <p className="text-left mb-4">Priority handling</p>
+
+                <button className="bg-blue-800 text-white py-3 px-6 rounded-md font-bold text-xl hover:bg-blue-600 transition duration-300">Add Fast Track</button>
+              </div>
+            </div>
+          </div> 
 
           <div className="mt-16 mb-16">
             
