@@ -25,16 +25,7 @@ body, html {
   background-color: #1a237e;
   padding: 1rem 0;
   display: flex;
-  justify-content: space-between; /* Updated from 'center' to 'space-between' */
-  align-items: center;
-}
-
-.footer-banner {
-  width: 100%;
-  background-color: #E5E7EB;
-  padding: 1rem 0;
-  display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -43,6 +34,7 @@ body, html {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
+  flex: 1;
 }
 
 .logo {
@@ -170,6 +162,16 @@ textarea.form-control {
   margin: 0 0.5rem;
   font-size: 2rem;
   color: #1a237e;
+}
+
+.footer-banner {
+  width: 100%;
+  background-color: #E5E7EB;
+  padding: 1rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
 }
 
 .copyright {
