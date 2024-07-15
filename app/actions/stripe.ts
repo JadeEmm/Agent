@@ -7,19 +7,17 @@ import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 
 export async function createCheckoutSession(data: FormData): Promise<void> {
+    const amount = Number(data.get('amount'))
+    const credits = Number(data.get('credits'))
 
     const checkoutSession: Stripe.Checkout.Session = 
     await stripe.checkout.sessions.create({
         mode: 'payment',
-        submit_type: 'book',
+        submit_type: 'pay',
         metadata: {
-            itemid: data.get('itemid') as string,
-            guestid: data.get('guestid') as string,
-            rentstart: data.get('rentstart') as string,
-            rentend: data.get('rentend') as string,
-            durationtype: data.get('durationtype') as string,
-            duration: data.get('duration') as string,
-            amount: data.get('amount') as string
+            userid: data.get('userid') as string,
+            amount: amount.toString(),
+            credits: credits.toString()
         },
         line_items: [
             {
@@ -27,17 +25,16 @@ export async function createCheckoutSession(data: FormData): Promise<void> {
                 price_data: {
                     currency: 'usd',
                     product_data: {
-                        name: data.get('item') as string
+                        name: 'Amount Credit'
                     },
-                    unit_amount: 
-                    formatAmountForStripe(Number(data.get('amount') as string), 'usd')
+                    unit_amount: formatAmountForStripe(amount, 'usd')
                 },
             }
         ],
         success_url:
-        `${headers().get('origin')}/rent/item/checkout/result?session_id={CHECKOUT_SESSION_ID}`,
+        `${headers().get('origin')}/dashboard/seeker/add-credits/checkout/result?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${headers().get('origin')}`
     })
-
+    console.log(checkoutSession, "checkout-session")
     redirect(checkoutSession.url as string)
 }

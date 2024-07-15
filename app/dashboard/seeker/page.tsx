@@ -28,7 +28,7 @@ async function MainDashboard() {
 
     const linkToJobs = "/dashboard/seeker/jobs"
     const connectAgent = "/" // update when page to connect with an agent is live
-    const increaseCredit = "/"; // update when stripe page is live
+    const increaseCredit = "/dashboard/seeker/add-credits"; // update when stripe page is live
 
   return (
       <div className="max-w-xl mx-auto text-center">

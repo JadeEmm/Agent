@@ -19,23 +19,30 @@ declare module 'next-auth' {
 export const authOptions: AuthOptions = {
     adapter: MongoDBAdapter(clientPromise() as Promise<MongoClient>) as Adapter,
     pages: {
-        signIn: '/auth/sign-in'
+        signIn: '/auth/sign-in',
+        newUser: 'auth/choose-role'
     },
     providers: [
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID!,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET!
-        }),
-        FacebookProvider({
-            clientId: process.env.FACEBOOK_CLIENT_ID!,
-            clientSecret: process.env.FACEBOOK_CLIENT_SECRET!
         })
+        // FacebookProvider({
+        //     clientId: process.env.FACEBOOK_CLIENT_ID!,
+        //     clientSecret: process.env.FACEBOOK_CLIENT_SECRET!
+        // })
     ],
     callbacks: {
-        async session({session, user}) {
-
-            session.user.id = user.id
-            return Promise.resolve(session)
+        async session({ session, token, user }) {
+            if (session.user) {
+                session.user.id = user.id
+            }
+            return session
+        },
+        async redirect({ url, baseUrl }) {
+            if (url.startsWith("/")) return `${baseUrl}${url}`
+            if (new URL(url).origin === baseUrl) return url
+            return baseUrl
         }
     }
 }
