@@ -71,6 +71,7 @@ export interface Order extends Document {
     agentId?: string,
     tier: Tier,
     numApps: Number,
+    numAppsCompleted: Number,
     status: Status,
 }
 

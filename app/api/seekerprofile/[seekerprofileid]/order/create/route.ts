@@ -28,6 +28,7 @@ export async function POST(
             agentid: null, // when seeker creates an order from job page on dashboard, they will not be connected to an agent yet
             tier: order.tier,
             numApps: order.numApps,
+            numAppsCompleted: 0, // no apps completed yet due to new order
             status: order.status,
         })
 
