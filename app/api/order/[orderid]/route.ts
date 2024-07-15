@@ -44,6 +44,7 @@ export async function PATCH(
             agentId,
             tier,
             numApps,
+            numAppsCompleted,
             status
             } = body;
 
@@ -57,6 +58,7 @@ export async function PATCH(
         order.agentId = agentId;
         order.tier = tier;
         order.numApps = numApps;
+        order.numAppsCompleted = numAppsCompleted;
         order.status = status;
 
         await order.save()

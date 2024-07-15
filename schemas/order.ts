@@ -6,6 +6,7 @@ const OrderSchema = new Schema<Order>({
     agentId: { type: mongoose.Types.ObjectId, ref: 'agents', default: null },
     tier: Tier,
     numApps: Number,
+    numAppsCompleted: Number,
     status: Status,
 }, {
     timestamps: true

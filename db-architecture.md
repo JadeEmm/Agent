@@ -76,4 +76,5 @@ orders collection
 - agentId?: string,
 - tier: enum("one", "two"),
 - numApps: Number,
+- numAppsCompleted: Number,
 - status: enum("pending", "in-progress", "complete"),
