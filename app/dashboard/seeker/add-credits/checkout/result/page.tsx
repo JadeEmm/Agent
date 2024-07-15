@@ -24,12 +24,18 @@ async function AddCreditsCheckoutPage({
         expand: ['line_items', "payment_intent"]
     })
 
+    const session = await getServerSession(authOptions);
+    if (!session || !session.user) {
+        throw new Error("User session not found");
+    }
+
+    const userId = session.user.id;
     const paymentIntent = checkoutSession.payment_intent as Stripe.PaymentIntent
     const paymentStatus = paymentIntent.status === 'succeeded' ? 'Payment successful' : 'Payment failed'
 
     if (paymentIntent.status === 'succeeded') {
         const metadata = checkoutSession.metadata as Metadata
-        await updateUserBalance(metadata['seekerid'], parseFloat(metadata['amount']), parseInt(metadata['credits'])) 
+        await updateUserBalance(userId, parseFloat(metadata['amount']), parseInt(metadata['credits']), checkoutSession.id) 
     }
 
     return (
