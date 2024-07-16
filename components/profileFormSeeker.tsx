@@ -6,7 +6,7 @@ import PdfDropZone from './pdfDropZone';
 import { SeekerProfile } from '@/types';
 
 
-export function ProfileForm(
+export function SeekerProfileForm(
   { user_id, existingProfile }: 
   { user_id: string, existingProfile: any }
 ) {
