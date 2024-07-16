@@ -4,9 +4,10 @@ import React, { useState } from 'react'
 import { useForm,  } from 'react-hook-form';
 import PdfDropZone from './pdfDropZone';
 import { SeekerProfile } from '@/types';
+import { toast } from 'sonner';
 
 
-export function ProfileForm(
+export function SeekerProfileForm(
   { user_id, existingProfile }: 
   { user_id: string, existingProfile: any }
 ) {
@@ -17,14 +18,18 @@ export function ProfileForm(
     const [resumes, setresumes] = useState<string[]>( existingProfile?.resumes || []);
     
     const onSubmit = async (data) => {
-      const response = await fetch(`/api/seekerprofile/${user_id}`, {
+      const pendingRequest = fetch(`/api/seekerprofile/${user_id}`, {
         method: 'POST',
         body: JSON.stringify({...data, resumes}),
         headers: {
           'Content-Type': 'application/json'
         }
       })
-      const body = await response.json();
+      toast.promise(pendingRequest, {
+        loading: 'Updating profile...',
+        success: 'Profile updated successfully!',
+        error: 'Profile update failed!'
+      });
     }
 
     return (

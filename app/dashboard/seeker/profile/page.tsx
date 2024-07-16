@@ -13,7 +13,7 @@ import { AgentModel } from '@/schemas/agent'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '../../../api/auth/[...nextauth]/route'
 import { redirect, useRouter } from 'next/navigation'
-import { ProfileForm } from '@/components/profileForm'
+import { SeekerProfileForm } from '@/components/profileFormSeeker'
 import { SeekerProfileModel } from '@/schemas/seekerprofile'
 import { SeekerProfile } from '@/types'
 
@@ -36,7 +36,7 @@ async function MainDashboardProfile() {
     return (
       <div className='flex flex-col p-4'>
           <h1 className='text-2xl sm:text-4xl py-8 font-bold'>Profile</h1>
-          <ProfileForm user_id={session.user.id} existingProfile={existingProfile} />
+          <SeekerProfileForm user_id={session.user.id} existingProfile={existingProfile} />
       </div>
     )
 }

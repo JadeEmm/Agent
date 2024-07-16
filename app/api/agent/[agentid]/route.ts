@@ -41,44 +41,43 @@ export async function DELETE(
 
 }
 
-// patch
-export async function PATCH(
-    req: Request,
-    { params } : { params: { agentid: string }}
-) {
+// POST
+// TO CREATE A NEW AGENT PROFILE OR EDIT AN EXISTING ONE
+export async function POST(req: Request, { params } : { params: { agentid: string }}) {
 
     try {
-    await connectToDB()
 
-    const body = await req.json()
+        const agentId = params.agentid // agentid is the user id of the user who is creating the agent profile
+        const body = await req.json();
 
-    const { 
-        agentId,
-        agentName, 
-        agentDescription,
-        photos,
-        status,
-        orders
-        } = body;
+        console.log('POST agent profile', agentId, body)
 
-        const agent = await AgentModel.findById<Agent>(params.agentid)
-
-        if (!agent) {
-            return new NextResponse("agent not found", { status: 404 })
+        if (!agentId) {
+            return new NextResponse('Host not found', { status: 404 })
         }
 
-        agent.agentId = agentId
-        agent.name = agentName
-        agent.description = agentDescription        
-        agent.photos = photos
-        agent.status = status ? ItemStatus.LISTED : ItemStatus.UNLISTED
-        agent.orders = orders
+        await connectToDB()
 
-        await agent.save()
+        // check if existing profile based on agentid
+        const existingProfile = await AgentModel.findOne({ agentId })
+
+        let agentProfile;
+
+        if (existingProfile) {
+            // Update existing profile
+            console.log('Updating existing agent profile')
+            agentProfile = await AgentModel.findOneAndUpdate({ agentId }, body, { new: true });
+        } else {
+            // Create new profile
+            console.log('Creating new agent profile')
+            agentProfile = await AgentModel.create({...body, orders: [], agentId});
+        }
 
         return NextResponse.json({
-            message: "Agent updated"
+            message: existingProfile ? "Agent profile updated" : "Agent profile created",
+            agentProfile
         })
+
     } catch(error) {
         console.log(error)
         return new NextResponse("Server error: " + error, { status: 500})
