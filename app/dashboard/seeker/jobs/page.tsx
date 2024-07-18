@@ -1,8 +1,5 @@
-
-
 import React from 'react'
 import { Button, buttonVariants } from '@/components/ui/button'
-import { Plus } from 'lucide-react'
 import { JobApplicationModel } from '@/schemas/jobApplication'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '../../../api/auth/[...nextauth]/route'
@@ -12,51 +9,51 @@ import Link from 'next/link'
 import { ApplicationTable } from '../../../../components/applicationTable'
 import { OrderModel } from '@/schemas/order'
 import { SeekerProfileModel } from '@/schemas/seekerprofile'
-import { Status, Tier } from '@/types'
+import { JobApplication, Order, Status, Tier } from '@/types'
 import { OrdersTable } from '@/components/ordersTable'
 
 
 async function MainDashboardJobs() {
-    const session = await getServerSession(authOptions)
+  const session = await getServerSession(authOptions)
 
-    if (!session) {
-        redirect('/api/auth/signin')
-    }
+  if (!session) {
+      redirect('/api/auth/signin')
+  }
 
-    const myAppliedJobs = await JobApplicationModel.find({
-        seekerid: session?.user.id
-    }) 
+  const myAppliedJobs = await JobApplicationModel.find({
+      seekerid: session?.user.id
+  }) 
 
-    const seekerProfiles = await SeekerProfileModel.find({
-      hostid: session?.user.id
-    })
+  const seekerProfiles = await SeekerProfileModel.find({
+    hostid: session?.user.id
+  })
 
-    const existingOrders = await OrderModel.find({
-      seekerId: seekerProfiles[0]._id
-    })
-  //   const existingOrders = [
-  //     {
-  //       numApps: 30,
-  //       numAppsCompleted: 0,
-  //       status: Status.Pending,
-  //       tier: Tier.One,
-  //     },
-  //     {
-  //       numApps: 80,
-  //       numAppsCompleted: 20,
-  //       status: Status.InProgress,
-  //       tier: Tier.Two,
-  //     },
-  // ];
+  const existingOrders = await OrderModel.find({
+    seekerId: seekerProfiles[0]._id
+  })
+//   const existingOrders = [
+//     {
+//       numApps: 30,
+//       numAppsCompleted: 0,
+//       status: Status.Pending,
+//       tier: Tier.One,
+//     },
+//     {
+//       numApps: 80,
+//       numAppsCompleted: 20,
+//       status: Status.InProgress,
+//       tier: Tier.Two,
+//     },
+// ];
 
-    // TODO: retrive actual agent once the model is updated.
-    const assignedAgent = {
-        id: '123',
-        name: 'John Doe',
-        email: '',
-        area: ["SWE", "Data Science"],
-        image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1471&amp;q=80"
-    } 
+  // TODO: retrive actual agent once the model is updated.
+  const assignedAgent = {
+      id: '123',
+      name: 'John Doe',
+      email: '',
+      area: ["SWE", "Data Science"],
+      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1471&amp;q=80"
+  } 
 
   return (
     <div className="flex flex-col h-full">
@@ -99,9 +96,9 @@ async function MainDashboardJobs() {
               <OrdersTable orders={existingOrders} />
             </>
           : 
-            <Button className={cn(buttonVariants({variant: 'secondary'}),"")}>
-                Create new order
-            </Button>
+            <Link style={{marginLeft: "45%", marginTop: "15%"}} className={cn(buttonVariants({variant: 'secondary'}),"")} href="/dashboard/seeker/jobs/create-order">
+              Create new order
+            </Link>
         }
         </div>
       </div>
@@ -109,7 +106,7 @@ async function MainDashboardJobs() {
         <h3><strong>Applications</strong></h3>
         <ApplicationTable userid={session?.user.id} />
       </div>
-      </div>
+    </div>
   )
 }
 
