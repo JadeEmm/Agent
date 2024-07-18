@@ -29,7 +29,7 @@ async function MainDashboardJobs() {
   })
 
   const existingOrders = await OrderModel.find({
-    seekerId: seekerProfiles[0]._id
+    seekerId: seekerProfiles[0].hostid
   })
 //   const existingOrders = [
 //     {
