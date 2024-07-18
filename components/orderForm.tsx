@@ -3,44 +3,49 @@
 import React, { useState } from 'react'
 import { useForm,  } from 'react-hook-form';
 import { Tier } from '@/types';
+import { toast } from 'sonner';
 
 export function OrderForm(
   { user_id, existingProfile }: 
   { user_id: string, existingProfile: any }
 ) {
-
     const { register, handleSubmit, reset, formState: { errors } } = useForm({});
     const [validationError, setValidationError] = useState('');
     
     const onSubmit = async (data) => {
-        const { pricingTier, numApps } = data;
+        const { tier, numApps } = data;
         const numCredits = existingProfile?.numCredits || 0;
 
         let requiredCredits = 0;
-        if (pricingTier === Tier.One) {
+        if (tier === Tier.One) {
             requiredCredits = numApps;
-        } else if (pricingTier === Tier.Two) {
+        } else if (tier === Tier.Two) {
             requiredCredits = numApps * 2;
         }
 
-        if (!pricingTier) {
+        if (!tier) {
             setValidationError('Select a tier');
             return;
         }
 
         if (requiredCredits > numCredits) {
-            setValidationError(`You do not have enough credits for ${numApps} applications: you currently have ${numCredits} credits, which is enough for ${Math.floor(numCredits / (pricingTier === Tier.One ? 1 : 2))} applications for tier ${pricingTier}.`);
+            setValidationError(`You do not have enough credits for ${numApps} applications: you currently have ${numCredits} credits, which is enough for ${Math.floor(numCredits / (tier === Tier.One ? 1 : 2))} applications for tier ${tier}.`);
             return;
         }
 
-        const response = await fetch(`/api/seekerprofile/${user_id}`, {
-        method: 'POST',
-        body: JSON.stringify({...data}),
-        headers: {
-            'Content-Type': 'application/json'
-        }
+        const response = await fetch(`/api/seekerprofile/${user_id}/order/create`, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
         })
-        const body = await response.json();
+        if (response.ok) {
+            toast.success("New order created.")
+        } else {
+            toast.error("Failed to create new order.")
+            console.log(response.body);
+        }
     }
 
     return (
@@ -54,7 +59,7 @@ export function OrderForm(
                             id="tierI"
                             type="radio"
                             value={Tier.One}
-                            {...register("pricingTier", { required: true })}
+                            {...register("tier", { required: true })}
                             disabled={!existingProfile || existingProfile?.numCredits == 0}
                             className="mr-2"
                             />
@@ -71,7 +76,7 @@ export function OrderForm(
                             id="tierII"
                             type="radio"
                             value={Tier.Two}
-                            {...register("pricingTier", { required: true })}
+                            {...register("tier", { required: true })}
                             disabled={!existingProfile || existingProfile?.numCredits == 0}
                             className="mr-2"
                             />
@@ -84,7 +89,7 @@ export function OrderForm(
                                 <li>Application tracking</li>
                             </ul>
                         </div>
-                        {errors.pricingTier && <span className="text-red-600 text-sm">Please select a pricing tier</span>}
+                        {errors.tier && <span className="text-red-600 text-sm">Please select a pricing tier</span>}
                     </div>
                 </div>
             </div>
