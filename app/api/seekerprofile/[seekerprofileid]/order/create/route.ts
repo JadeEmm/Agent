@@ -1,6 +1,6 @@
 import { connectToDB } from "@/lib/mongodb"
 import { OrderModel } from "@/schemas/order"
-import { Order } from "@/types"
+import { Status } from "@/types"
 import { NextResponse } from "next/server"
 
 export async function POST(
@@ -9,12 +9,7 @@ export async function POST(
 )  {
 
     try {
-
-        const formData: FormData = await request.formData()
-
-        const data = formData.get('data') as string
-        const dataJson = JSON.parse(data)
-        const order = dataJson.order as Order
+        const data = await request.json()
         const seekerId = params.seekerprofileid;
 
         if (!seekerId) {
@@ -24,12 +19,12 @@ export async function POST(
         await connectToDB()
 
         const savedOrder = await OrderModel.create({
-            seekerid: seekerId,
-            agentid: null, // when seeker creates an order from job page on dashboard, they will not be connected to an agent yet
-            tier: order.tier,
-            numApps: order.numApps,
+            seekerId: seekerId,
+            agentId: null, // when seeker creates an order from job page on dashboard, they will not be connected to an agent yet
+            tier: data.tier,
+            numApps: data.numApps,
             numAppsCompleted: 0, // no apps completed yet due to new order
-            status: order.status,
+            status: Status.InProgress, // new order so inprogress
         })
 
         return NextResponse.json({
@@ -39,6 +34,8 @@ export async function POST(
 
 
     } catch (error) {
+        console.log("error in saving order: ")
+        console.log(error);
         return new NextResponse("Failed to save order: " + error,  { status: 500})
     }
 }
