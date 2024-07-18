@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm,  } from 'react-hook-form';
 import { Tier } from '@/types';
 
@@ -10,16 +10,37 @@ export function OrderForm(
 ) {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm({});
+    const [validationError, setValidationError] = useState('');
     
     const onSubmit = async (data) => {
-      const response = await fetch(`/api/seekerprofile/${user_id}`, {
+        const { pricingTier, numApps } = data;
+        const numCredits = existingProfile?.numCredits || 0;
+
+        let requiredCredits = 0;
+        if (pricingTier === Tier.One) {
+            requiredCredits = numApps;
+        } else if (pricingTier === Tier.Two) {
+            requiredCredits = numApps * 2;
+        }
+
+        if (!pricingTier) {
+            setValidationError('Select a tier');
+            return;
+        }
+
+        if (requiredCredits > numCredits) {
+            setValidationError(`You do not have enough credits for ${numApps} applications: you currently have ${numCredits} credits, which is enough for ${Math.floor(numCredits / (pricingTier === Tier.One ? 1 : 2))} applications for tier ${pricingTier}.`);
+            return;
+        }
+
+        const response = await fetch(`/api/seekerprofile/${user_id}`, {
         method: 'POST',
         body: JSON.stringify({...data}),
         headers: {
-          'Content-Type': 'application/json'
+            'Content-Type': 'application/json'
         }
-      })
-      const body = await response.json();
+        })
+        const body = await response.json();
     }
 
     return (
@@ -86,8 +107,10 @@ export function OrderForm(
                 </div>
             </div>
 
+            {validationError && <div className="text-red-600 text-sm">{validationError}</div>}
+
             <div className="mt-6 flex items-center justify-start gap-x-6">
-                <button type="button" disabled={!existingProfile || existingProfile?.numCredits == 0} className="text-sm font-semibold leading-6 text-gray-900" onClick={() => reset()}>Cancel</button>
+                <button type="button" disabled={!existingProfile || existingProfile?.numCredits == 0} className="text-sm font-semibold leading-6 text-gray-900" onClick={() => { reset(); setValidationError(''); }}>Cancel</button>
                 <button type="submit" disabled={!existingProfile || existingProfile?.numCredits == 0} className="rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
                     Create Order
                 </button>
