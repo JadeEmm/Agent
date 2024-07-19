@@ -94,9 +94,10 @@ export default function Home() {
         {/* Testimonials Section */}
         <section className="py-8 sm:py-16">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-8">Testimonials</h2>
-            <p className="mb-4">"Thanks to Agent, I landed my dream job in half the time it would have taken on my own."</p>
-    <p className="mb-8">- Jane D., Software Engineer</p>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-8">Our Mission</h2>
+            <h3 className="text-xl sm:text-3xl font-bold mb-4">Faster. Easier. Streamlined. Fun.</h3>
+            
+    <p className="mb-8">We're providing the experience job seekers want.</p>
           </div>
         </section>
 

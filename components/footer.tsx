@@ -32,7 +32,7 @@ function Footer() {
             <p className="font-bold mt-4">For Agents</p>
             <div className="flex flex-col gap-1 py-2">
               <Link href='/become-an-agent' className='text-sm'>Become an Agent</Link>
-              <Link href='/agent-resources' className='text-sm'>Agent Policies &Resources</Link>
+              <Link href='/agent-resources' className='text-sm'>Agent Policies & Resources</Link>
             </div>
           </div>
         </div>
